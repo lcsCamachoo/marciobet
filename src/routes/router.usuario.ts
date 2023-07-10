@@ -7,7 +7,7 @@ import {
   deletar,
   buscar,
   login,
-} from "../controller/Usuario";
+} from "../controller/usuario";
 
 export const routerUsuario = Router();
 
