@@ -78,7 +78,7 @@ export const listar = async (req: Request, res: Response) => {
 
     res.status(200).send({
       message: "Listagem de usuários",
-      data: usuarios,
+      usuarios,
       error: false,
       success: true,
     });

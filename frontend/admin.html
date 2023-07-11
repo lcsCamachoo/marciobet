@@ -11,6 +11,25 @@
       type="text/css"
       href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"
     />
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables library -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"
+    />
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
+    ></script>
+
     <title>Página do Administrador</title>
   </head>
   <body>
@@ -38,23 +57,23 @@
       src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="js2/datatables-simple-demo.js"></script>
 
     <script>
       const table = document.getElementById("myTable");
       const tbody = table.querySelector("tbody");
       const api = axios.create({
-        baseURL: "http://localhost:3777",
+        baseURL: "https://bet-marcio.onrender.com",
       });
 
       const getUsuarios = async () => {
         const response = await api.get("/usuario/listar");
-        return response.data;
+        return response.data.data;
       };
 
       const showUsuarios = async () => {
         const usuarios = await getUsuarios();
         usuarios.forEach((usuario) => {
+          console.log(usuario);
           const tr = document.createElement("tr");
           tr.innerHTML = `
             <td>${usuario.nome}</td>

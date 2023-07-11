@@ -38,7 +38,7 @@
       const formData = new FormData(form);
       const data = Object.fromEntries(formData);
       axios
-        .post("http://localhost:3777/usuario/inserir", data)
+        .post("https://bet-marcio.onrender.com/usuario/inserir", data)
         .then((response) => {
           alert("Usuário registrado com sucesso!");
           window.location.href = "/login";
