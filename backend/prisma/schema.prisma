@@ -16,10 +16,11 @@ model Usuario {
   nomeCompleto String
   chavePix     String
   apelido      String
-  creditos     Int
+  creditos     Int         @default(0)
   senha        String
   criado       DateTime    @default(now())
   atualizado   DateTime    @updatedAt
+  role         String      @default("USER")
   Respostas    Respostas[]
 }
 

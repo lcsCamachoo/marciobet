@@ -1,14 +1,65 @@
 import { Request, Response } from "express";
 import { prisma } from "../../prisma/client";
+import {
+  comparePasswords,
+  hashPassword,
+} from "../utils/criptografia";
+import { gerarToken } from "../utils/gerarToken";
+
+export const alterarCreditos = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const { id } = req.params;
+    const { creditos } = req.body;
+
+    const usuario = await prisma.usuario.update({
+      where: {
+        id: String(id),
+      },
+      data: {
+        creditos: Number(creditos),
+      },
+    });
+
+    res.status(200).send({
+      message: "Créditos alterados com sucesso",
+      data: usuario,
+      error: false,
+      success: true,
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: "Ocorreu um erro ao alterar os créditos",
+      error: true,
+      success: false,
+    });
+  }
+};
 
 export const inserir = async (req: Request, res: Response) => {
   try {
-    const { nome, email, senha } = req.body;
-    console.log(nome, email, senha);
+    const { nomeCompleto, email, senha, chavePix, apelido } =
+      req.body;
+    console.log(nomeCompleto, email, senha);
+
+    const usuario = await prisma.usuario.create({
+      data: {
+        nomeCompleto,
+        email,
+        senha: await hashPassword(senha),
+        apelido,
+        chavePix,
+        creditos: 0,
+        role: req.body.role || "USER",
+      },
+    });
 
     res.status(200).send({
       message: "Usuário inserido com sucesso",
       date: new Date(),
+      response: usuario,
       error: false,
       success: true,
     });
@@ -132,18 +183,32 @@ export const buscar = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, senha } = req.body;
-
+    console.log(email, senha);
     const usuario = await prisma.usuario.findFirst({
       where: {
         email: email,
-        senha: senha,
       },
     });
-
-    if (usuario) {
+    if (!usuario)
+      return res.status(400).send({
+        message: "Usuário não encontrado",
+        error: true,
+        success: false,
+      });
+    const senhaCorreta = await comparePasswords(
+      senha,
+      usuario.senha,
+    );
+    if (senhaCorreta) {
+      const token = gerarToken(usuario.id);
+      res.header("auth-token-bet-legal", token);
+      res.cookie("auth-token-bet-legal", token, {
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+      });
       res.status(200).send({
         message: "Login realizado com sucesso",
         data: usuario,
+        token,
         error: false,
         success: true,
       });

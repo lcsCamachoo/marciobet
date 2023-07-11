@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"
+    />
+    <title>Página do Administrador</title>
+  </head>
+  <body>
+    <h1>Painel de Administração</h1>
+
+    <h2>Dados dos Usuários</h2>
+    <table id="myTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Crédito</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js2/datatables-simple-demo.js"></script>
+
+    <script>
+      const table = document.getElementById("myTable");
+      const tbody = table.querySelector("tbody");
+      const api = axios.create({
+        baseURL: "http://localhost:3777",
+      });
+
+      const getUsuarios = async () => {
+        const response = await api.get("/usuario/listar");
+        return response.data;
+      };
+
+      const showUsuarios = async () => {
+        const usuarios = await getUsuarios();
+        usuarios.forEach((usuario) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${usuario.nome}</td>
+            <td>${usuario.creditos}</td>
+            <td>
+              <button onclick="editarCredito(${usuario.id})">Editar Crédito</button>
+              <button onclick="excluirUsuario(${usuario.id})">Excluir Usuário</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+        $(document).ready(function () {
+          $("#myTable").DataTable();
+        });
+      };
+
+      const editarCredito = (userId) => {
+        const creditos = prompt("Digite o novo valor de crédito:");
+        if (creditos !== null) {
+          // Enviar a requisição para atualizar o crédito do usuário
+          api
+            .put("/usuario/creditos/" + userId, { creditos })
+            .then(function (response) {
+              console.log("Crédito atualizado com sucesso!");
+              window.location.reload();
+            })
+            .catch(function (error) {
+              console.error("Erro ao atualizar o crédito:", error);
+            });
+        }
+      };
+
+      const excluirUsuario = (userId) => {
+        if (confirm("Tem certeza que deseja excluir esse usuário?")) {
+          // Enviar a requisição para excluir o usuário
+          api
+            .delete("/usuario/deletar/" + userId)
+            .then(function (response) {
+              console.log("Usuário excluído com sucesso!");
+              window.location.reload();
+            })
+            .catch(function (error) {
+              console.error("Erro ao excluir o usuário:", error);
+            });
+        }
+      };
+    </script>
+  </body>
+</html>

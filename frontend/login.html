@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+      <label for="email">Apelido ou Email:</label>
+      <input type="text" id="email" name="email" required /><br /><br />
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required /><br /><br />
+
+      <input type="submit" value="Entrar" />
+    </form>
+  </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      const res = await axios.post("http://localhost:3777/usuario/login", data);
+      if (res.data.success) {
+        alert("Login realizado com sucesso!");
+        // window.location.href = "/home";
+      } else {
+        alert("Erro ao realizar login!");
+      }
+      console.log(res);
+    });
+  </script>
+</html>

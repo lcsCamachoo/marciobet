@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registro de Usuário</title>
+  </head>
+  <body>
+    <h1>Registro de Usuário</h1>
+    <form action="/registrar" method="POST">
+      <label for="nome">Nome completo:</label>
+      <input
+        type="text"
+        id="nomeCompleto"
+        name="nomeCompleto"
+        required
+      /><br /><br />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <label for="chavePix">Chave Pix:</label>
+      <input type="text" id="chavePix" name="chavePix" required /><br /><br />
+
+      <label for="apelido">Apelido:</label>
+      <input type="text" id="apelido" name="apelido" required /><br /><br />
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required /><br /><br />
+
+      <input type="submit" value="Registrar" />
+    </form>
+  </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      axios
+        .post("http://localhost:3777/usuario/inserir", data)
+        .then((response) => {
+          alert("Usuário registrado com sucesso!");
+          window.location.href = "/login";
+        })
+        .catch((error) => {
+          alert("Erro ao registrar usuário!");
+          console.log(error);
+        });
+    });
+  </script>
+</html>

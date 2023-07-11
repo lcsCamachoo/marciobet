@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Usuario" ALTER COLUMN "creditos" SET DEFAULT 0,
+ALTER COLUMN "role" SET DEFAULT 'USER';
