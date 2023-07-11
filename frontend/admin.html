@@ -67,7 +67,7 @@
 
       const getUsuarios = async () => {
         const response = await api.get("/usuario/listar");
-        return response.data.data;
+        return response.data.usuarios;
       };
 
       const showUsuarios = async () => {
@@ -76,19 +76,20 @@
           console.log(usuario);
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td>${usuario.nome}</td>
+            <td>${usuario.nomeCompleto}</td>
             <td>${usuario.creditos}</td>
             <td>
-              <button onclick="editarCredito(${usuario.id})">Editar Crédito</button>
-              <button onclick="excluirUsuario(${usuario.id})">Excluir Usuário</button>
+              <button onclick="editarCredito('${usuario.id}')">Editar Crédito</button>
+              <button onclick="excluirUsuario('${usuario.id}')">Excluir Usuário</button>
             </td>
           `;
           tbody.appendChild(tr);
         });
-        $(document).ready(function () {
+        $(document).ready(() => {
           $("#myTable").DataTable();
         });
       };
+      showUsuarios();
 
       const editarCredito = (userId) => {
         const creditos = prompt("Digite o novo valor de crédito:");
@@ -96,11 +97,11 @@
           // Enviar a requisição para atualizar o crédito do usuário
           api
             .put("/usuario/creditos/" + userId, { creditos })
-            .then(function (response) {
+            .then((response) => {
               console.log("Crédito atualizado com sucesso!");
               window.location.reload();
             })
-            .catch(function (error) {
+            .catch((error) => {
               console.error("Erro ao atualizar o crédito:", error);
             });
         }
@@ -111,11 +112,11 @@
           // Enviar a requisição para excluir o usuário
           api
             .delete("/usuario/deletar/" + userId)
-            .then(function (response) {
+            .then((response) => {
               console.log("Usuário excluído com sucesso!");
               window.location.reload();
             })
-            .catch(function (error) {
+            .catch((error) => {
               console.error("Erro ao excluir o usuário:", error);
             });
         }
