@@ -28,7 +28,9 @@
       );
       if (res.data.success) {
         alert("Login realizado com sucesso!");
-        // window.location.href = "/home";
+        document.cookie = `token-bet=${res.data.token}`;
+        document.cookie = `id-user=${res.data.data.usuario}`;
+        window.location.href = "/user.html";
       } else {
         alert("Erro ao realizar login!");
       }

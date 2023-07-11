@@ -109,7 +109,7 @@ export const atualizar = async (req: Request, res: Response) => {
 
     res.status(200).send({
       message: "Usuário atualizado com sucesso",
-      data: usuario,
+      usuario: usuario,
       error: false,
       success: true,
     });
@@ -134,7 +134,7 @@ export const deletar = async (req: Request, res: Response) => {
 
     res.status(200).send({
       message: "Usuário deletado com sucesso",
-      data: usuario,
+      usuario: usuario,
       error: false,
       success: true,
     });
@@ -160,7 +160,7 @@ export const buscar = async (req: Request, res: Response) => {
     if (usuario) {
       res.status(200).send({
         message: "Usuário encontrado",
-        data: usuario,
+        usuario: usuario,
         error: false,
         success: true,
       });
@@ -207,7 +207,7 @@ export const login = async (req: Request, res: Response) => {
       });
       res.status(200).send({
         message: "Login realizado com sucesso",
-        data: usuario,
+        usuario: usuario,
         token,
         error: false,
         success: true,
