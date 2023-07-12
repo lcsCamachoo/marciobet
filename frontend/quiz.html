@@ -83,6 +83,18 @@
     justify-content: center;
     gap: 5px;
   }
+
+  #premioFinal {
+    font-size: 80px;
+    color: blue;
+    animation: blinker 1s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
 </style>
 
 <body>
@@ -135,16 +147,25 @@
         <span id="countdown"></span>
       </div>
     </div>
+    <div>
+      <p>Prêmio Atualizando</p>
+      <p id="premioFinal"></p>
+    </div>
   </main>
 </body>
 <script src="./js/cronometro.js"></script>
 <script src="./js/mostrarTimes.js"></script>
 <script>
   let usuario = {}
+  const idRodada = "842e92f7-6ca4-4b86-957e-caa51cea31ba"
+  const premioFinalElement = document.querySelector('#premioFinal')
+  let premioFinalNumber = 0
   const cred = document.querySelector('#creditos')
   const cookies = document.cookie.split(';')
   const idUser = cookies.find(item => item.includes('id-user'))
   const idFormatado = idUser.substring(9)
+
+
   const getUsuario = async () => {
     const res = await api.get('/usuario/buscar/' + idFormatado)
     usuario = res.data.usuario
@@ -153,10 +174,21 @@
   }
   getUsuario()
 
+  const getPremioFinal = async () => {
+    const res = await api.get('/rodada/listar/premiofinal/' + idRodada)
+    const premioFinal = res.data.premioFinal
+    const premioFinalFormatado = premioFinal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+    premioFinalElement.innerHTML = premioFinalFormatado
+    premioFinalNumber = premioFinal
+  }
+  getPremioFinal()
+
   const getRespostas = () => {
 
     const options = document.querySelectorAll('.options')
-    const respostas = {}
+    const respostas = {
+
+    }
     options.forEach((option, index) => {
       const time1Input = option.querySelector('.time1Input')
       const empateInput = option.querySelector('.empateInput')
@@ -169,9 +201,14 @@
         respostas['jogo' + index] = time2Input.value
       }
     })
-    console.log(respostas)
+    
     return respostas
   }
+
+  const editarPremio = async (premioFinal) => {
+    const res = await api.put("/rodada/atualizar/premioFinal/" + idRodada, { premioFinal })
+    console.log(res)
+  };
 
 
   const editarCredito = async (userId, creditosUsuario) => {
@@ -180,10 +217,12 @@
     console.log(res)
   };
   const enviarBtn = document.querySelector('#btnEnviar')
+
   const enviarRespostas = async () => {
 
     const respostas = getRespostas()
-    if (respostas.length < 10) {
+    const respostasLength = Object.keys(respostas).length
+    if (respostasLength < 10) {
       alert('Você precisa responder todas as perguntas!')
       return
     }
@@ -194,8 +233,10 @@
     }
     await Promise.all([
       api.post('/resposta/inserir', { respostas, usuarioId: idFormatado }),
+      editarPremio(premioFinalNumber + 2),
       editarCredito(idFormatado, usuario.creditos),
-      getUsuario()
+      getUsuario(),
+      getPremioFinal()
     ])
 
   }

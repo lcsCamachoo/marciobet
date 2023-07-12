@@ -6,6 +6,8 @@ import {
   atualizar,
   deletar,
   buscar,
+  listarPremioFinal,
+  atualizarPremioFinal,
 } from "../controller/rodadas";
 
 export const routerRodada = Router();
@@ -13,6 +15,16 @@ export const routerRodada = Router();
 routerRodada.post("/rodada/inserir", inserir);
 
 routerRodada.get("/rodada/listar", listar);
+
+routerRodada.get(
+  "/rodada/listar/premiofinal/:id",
+  listarPremioFinal,
+);
+
+routerRodada.put(
+  "/rodada/atualizar/premiofinal/:id",
+  atualizarPremioFinal,
+);
 
 routerRodada.put("/rodada/atualizar/:id", atualizar);
 

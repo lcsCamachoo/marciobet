@@ -25,19 +25,20 @@ model Usuario {
 }
 
 model Rodada {
-  id         String   @id @default(uuid())
-  jogo1      String?
-  jogo2      String?
-  jogo3      String?
-  jogo4      String?
-  jogo5      String?
-  jogo6      String?
-  jogo7      String?
-  jogo8      String?
-  jogo9      String?
-  jogo10     String?
-  criado     DateTime @default(now())
-  atualizado DateTime @updatedAt
+  id          String   @id @default(uuid())
+  jogo1       String?
+  jogo2       String?
+  jogo3       String?
+  jogo4       String?
+  jogo5       String?
+  jogo6       String?
+  jogo7       String?
+  jogo8       String?
+  jogo9       String?
+  jogo10      String?
+  premioFinal Int      @default(1000)
+  criado      DateTime @default(now())
+  atualizado  DateTime @updatedAt
 }
 
 model Respostas {

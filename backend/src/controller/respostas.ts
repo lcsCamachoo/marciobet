@@ -46,7 +46,7 @@ export const inserir = async (req: Request, res: Response) => {
       success: true,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(400).send({
       message: "Ocorreu um erro ao inserir a resposta",
       error: true,
@@ -60,14 +60,14 @@ export const listar = async (req: Request, res: Response) => {
     const respostas = await prisma.respostas.findMany();
 
     res.status(200).send({
-      message: "Listagem de usuários",
+      message: "Listagem de respostas",
       data: respostas,
       error: false,
       success: true,
     });
   } catch (error) {
     res.status(400).send({
-      message: "Ocorreu um erro ao listar os usuários",
+      message: "Ocorreu um erro ao listar as respostas",
       error: true,
       success: false,
     });

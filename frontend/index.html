@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Login</title>
   </head>
-  <style>
-    .home {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      gap: 1rem;
-    }
-  </style>
   <body>
-    <div class="home">
-      <a href="login.html" type="button">Login</a>
-      <a href="register.html" type="button">Register</a>
-      <a href="admin.html" type="button">Admin</a>
-      <a href="user.html" type="button">Usuario</a>
-      <a href="quiz.html" type="button">Quiz</a>
-    </div>
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+      <label for="email">Apelido ou Email:</label>
+      <input type="text" id="email" name="email" required /><br /><br />
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required /><br /><br />
+
+      <input type="submit" value="Entrar" />
+    </form>
   </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      const res = await axios.post(
+        "https://bet-marcio.onrender.com/usuario/login",
+        data
+      );
+      if (res.data.success) {
+        alert("Login realizado com sucesso!");
+        document.cookie = `token-bet=${res.data.token}`;
+        document.cookie = `id-user=${res.data.usuario.id}`;
+        window.location.href = "/user.html";
+      } else {
+        alert("Erro ao realizar login!");
+      }
+      console.log(res);
+    });
+  </script>
 </html>

@@ -1,45 +1,82 @@
 import { Request, Response } from "express";
 import { prisma } from "../../prisma/client";
 
-export const inserir = async (req: Request, res: Response) => {
+export const listarPremioFinal = async (
+  req: Request,
+  res: Response,
+) => {
+  const { id } = req.params;
   try {
-    const {
-      jogo1,
-      jogo2,
-      jogo3,
-      jogo4,
-      jogo5,
-      jogo6,
-      jogo7,
-      jogo8,
-      jogo9,
-      jogo10,
-    } = req.body;
-
-    const rodadas = await prisma.rodada.create({
-      data: {
-        jogo1,
-        jogo2,
-        jogo3,
-        jogo4,
-        jogo5,
-        jogo6,
-        jogo7,
-        jogo8,
-        jogo9,
-        jogo10,
+    const rodada = await prisma.rodada.findFirst({
+      where: {
+        id,
       },
     });
 
     res.status(200).send({
-      message: "Usuário inserido com sucesso",
+      message: "Listagem de PremioFinal",
+      premioFinal: rodada?.premioFinal,
+      error: false,
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      message: "Ocorreu um erro ao listar os PremioFinal",
+      error: true,
+      success: false,
+    });
+  }
+};
+
+export const atualizarPremioFinal = async (
+  req: Request,
+  res: Response,
+) => {
+  const { id } = req.params;
+  const { premioFinal } = req.body;
+  try {
+    const premioFinalAtualizado = await prisma.rodada.update({
+      where: {
+        id,
+      },
+      data: {
+        premioFinal,
+      },
+    });
+
+    res.status(200).send({
+      message: "PremioFinal atualizado com sucesso",
+      data: premioFinalAtualizado,
+      error: false,
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      message: "Ocorreu um erro ao atualizar o PremioFinal",
+      error: true,
+      success: false,
+    });
+  }
+};
+
+export const inserir = async (req: Request, res: Response) => {
+  try {
+    const rodada = await prisma.rodada.create({
+      data: {},
+    });
+
+    res.status(200).send({
+      message: "Rodada inserida com sucesso",
       date: new Date(),
+      response: rodada,
       error: false,
       success: true,
     });
   } catch (error) {
     res.status(400).send({
-      message: "Ocorreu um erro ao inserir o usuário",
+      message: "Ocorreu um erro ao inserir a rodada",
       error: true,
       success: false,
     });
