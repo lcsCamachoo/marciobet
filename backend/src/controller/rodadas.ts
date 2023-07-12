@@ -7,7 +7,7 @@ export const listarPremioFinal = async (
 ) => {
   const { id } = req.params;
   try {
-    const rodada = await prisma.rodada.findFirst({
+    const rodada = await prisma.rodada.findUnique({
       where: {
         id,
       },

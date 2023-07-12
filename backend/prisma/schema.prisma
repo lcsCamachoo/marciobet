@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -36,9 +33,9 @@ model Rodada {
   jogo8       String?
   jogo9       String?
   jogo10      String?
-  premioFinal Int      @default(1000)
   criado      DateTime @default(now())
   atualizado  DateTime @updatedAt
+  premioFinal Int      @default(1000)
 }
 
 model Respostas {
@@ -55,6 +52,6 @@ model Respostas {
   jogo10     String
   criado     DateTime @default(now())
   atualizado DateTime @updatedAt
-  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
   usuarioId  String
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
 }
