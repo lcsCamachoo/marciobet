@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <h1>Bem-vindo, {{username}}!</h1>
-    <p>Seu saldo de créditos: {{saldo}}</p>
+    <h1 class="username"></h1>
+    <p class="saldo"></p>
 
     <h2>Inserir Créditos</h2>
     <button onclick="mostrarOpcoes()">Inserir Créditos</button>
@@ -23,43 +23,48 @@
     <h2>Sacar Saldo</h2>
     <button onclick="sacarSaldo()">Sacar Saldo</button>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+      const username = document.querySelector(".username");
+      const saldo = document.querySelector(".saldo");
       const cookies = document.cookie.split("; ");
       console.log(cookies);
       const idUser = cookies.find((cookie) => cookie.startsWith("id-user="));
-      console.log(idUser);
       const api = axios.create({
         baseURL: "https://bet-marcio.onrender.com",
       });
 
       const getUsuario = async () => {
-        const response = await api.get("/usuario/buscar/" + idUser);
-        return response.data.usuarios;
+        const response = await api.get(
+          "/usuario/buscar/" + idUser.substring(8, idUser.length)
+        );
+        return response.data.usuario;
       };
       const showUsuario = async () => {
         const usuario = await getUsuario();
+        username.innerHTML = "Bem-vindo, " + usuario.nomeCompleto + "!";
+        saldo.innerHTML = "Seu saldo de créditos: " + usuario.creditos;
       };
+      showUsuario();
 
-      function mostrarOpcoes() {
+      const mostrarOpcoes = () => {
         const opcoesDiv = document.getElementById("opcoes");
         opcoesDiv.style.display = "block";
-      }
+      };
 
-      function inserirCredito(valor) {
+      const inserirCredito = (valor) => {
         // Aqui você pode adicionar a lógica para processar a inserção de crédito
         // Pode ser uma requisição AJAX para o servidor ou qualquer outra ação necessária
         console.log("Inserir crédito de R$" + valor);
         // Redirecionar o usuário para a página desejada após a inserção de crédito
-        window.location.href = "/inserir-credito?valor=" + valor;
-      }
+      };
 
-      function sacarSaldo() {
+      const sacarSaldo = () => {
         // Aqui você pode adicionar a lógica para processar o saque de saldo
         // Pode ser uma requisição AJAX para o servidor ou qualquer outra ação necessária
         console.log("Sacar saldo");
         // Redirecionar o usuário para a página desejada após o saque de saldo
-        window.location.href = "/sacar-saldo";
-      }
+      };
     </script>
   </body>
 </html>

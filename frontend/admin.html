@@ -57,13 +57,11 @@
       src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
       crossorigin="anonymous"
     ></script>
+    <script src="./js/api.js"></script>
 
     <script>
       const table = document.getElementById("myTable");
       const tbody = table.querySelector("tbody");
-      const api = axios.create({
-        baseURL: "https://bet-marcio.onrender.com",
-      });
 
       const getUsuarios = async () => {
         const response = await api.get("/usuario/listar");

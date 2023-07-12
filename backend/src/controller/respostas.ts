@@ -3,6 +3,8 @@ import { prisma } from "../../prisma/client";
 
 export const inserir = async (req: Request, res: Response) => {
   try {
+    const { respostas, usuarioId } = req.body;
+
     const {
       jogo1,
       jogo2,
@@ -14,8 +16,7 @@ export const inserir = async (req: Request, res: Response) => {
       jogo8,
       jogo9,
       jogo10,
-      usuarioId,
-    } = req.body;
+    } = respostas;
 
     const resposta = await prisma.respostas.create({
       data: {
@@ -38,15 +39,16 @@ export const inserir = async (req: Request, res: Response) => {
     });
 
     res.status(200).send({
-      message: "Usuário inserido com sucesso",
+      message: "Resposta inserida com sucesso",
       date: new Date(),
       response: resposta,
       error: false,
       success: true,
     });
   } catch (error) {
+    console.log(error)
     res.status(400).send({
-      message: "Ocorreu um erro ao inserir o usuário",
+      message: "Ocorreu um erro ao inserir a resposta",
       error: true,
       success: false,
     });

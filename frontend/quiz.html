@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./js/api.js"></script>
+
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .questionModel {
+    display: none;
+  }
+
+  .question {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .option {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .desc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .dia {
+    margin-top: 20px;
+  }
+
+  .submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+</style>
+
+<body>
+  <main>
+    <img class="icon"
+      src="https://static.wixstatic.com/media/83bf78_7cb4c097e1324b9d8f5f9626d0e0aba5~mv2.jpg/v1/fill/w_200,h_200,al_c,q_200,usm_0.66_1.00_0.01,enc_auto/download.jpg" />
+
+    <p>BET Brasileirão 2023 – RODADA 1</p>
+    <div class="questions">
+      <div class="questionModel">
+        <p class="dia">SÁBADO 15 DE ABRIL</p>
+        <div class="desc">
+          <span class="indexJogo">JOGO -</span>
+          (<span class="horario"></span>) <span class="time1"></span> x
+          <span class="time2"></span>
+        </div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" class="time1Input" id="time1Input" value="1" />
+            <label for="time1Input" class="labelTime1">
+              <img class="icon" src="" />
+              <span class="time1Radio"></span>
+            </label>
+          </div>
+          <div class="option">
+            <input type="radio" class="empateInput" id="empateInput" value="Empate" />
+            <label for="empateInput" class="labelEmpate">
+              <img class="icon" src="https://contmoura.com.br/wp-content/uploads/2019/09/x-png-icon-8.png" />
+              <span>Empate</span>
+            </label>
+          </div>
+          <div class="option">
+            <input type="radio" class="time2Input" id="time2Input" value="3" />
+            <label for="time2Input" class="labelTime2">
+              <img class="icon" src="" />
+              <span class="time2Radio"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="submit">
+      <button id="btnEnviar">Enviar</button>
+      <span id="creditos"></span>
+    </div>
+
+    <div class="countador">
+      <p>Tempo restante para o fim da rodada</p>
+      <div class="cronometro">
+        <span id="countdown"></span>
+      </div>
+    </div>
+  </main>
+</body>
+<script src="./js/cronometro.js"></script>
+<script src="./js/mostrarTimes.js"></script>
+<script>
+  let usuario = {}
+  const cred = document.querySelector('#creditos')
+  const cookies = document.cookie.split(';')
+  const idUser = cookies.find(item => item.includes('id-user'))
+  const idFormatado = idUser.substring(9)
+  const getUsuario = async () => {
+    const res = await api.get('/usuario/buscar/' + idFormatado)
+    usuario = res.data.usuario
+    cred.innerHTML = `Créditos: ${usuario.creditos}`
+
+  }
+  getUsuario()
+
+  const getRespostas = () => {
+
+    const options = document.querySelectorAll('.options')
+    const respostas = {}
+    options.forEach((option, index) => {
+      const time1Input = option.querySelector('.time1Input')
+      const empateInput = option.querySelector('.empateInput')
+      const time2Input = option.querySelector('.time2Input')
+      if (time1Input.checked) {
+        respostas['jogo' + index] = time1Input.value
+      } else if (empateInput.checked) {
+        respostas['jogo' + index] = empateInput.value
+      } else if (time2Input.checked) {
+        respostas['jogo' + index] = time2Input.value
+      }
+    })
+    console.log(respostas)
+    return respostas
+  }
+
+
+  const editarCredito = async (userId, creditosUsuario) => {
+    // Enviar a requisição para atualizar o crédito do usuário
+    const res = await api.put("/usuario/creditos/" + userId, { creditos: creditosUsuario - 5 })
+    console.log(res)
+  };
+  const enviarBtn = document.querySelector('#btnEnviar')
+  const enviarRespostas = async () => {
+
+    const respostas = getRespostas()
+    if (respostas.length < 10) {
+      alert('Você precisa responder todas as perguntas!')
+      return
+    }
+
+    if (usuario.creditos < 5) {
+      alert('Você não possui créditos suficientes para apostar!')
+      return
+    }
+    await Promise.all([
+      api.post('/resposta/inserir', { respostas, usuarioId: idFormatado }),
+      editarCredito(idFormatado, usuario.creditos),
+      getUsuario()
+    ])
+
+  }
+  enviarBtn.addEventListener('click', enviarRespostas)
+</script>
+<script>
