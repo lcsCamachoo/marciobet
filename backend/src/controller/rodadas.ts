@@ -11,6 +11,9 @@ export const listarPremioFinal = async (
       where: {
         id,
       },
+      select: {
+        premioFinal: true,
+      },
     });
 
     res.status(200).send({
@@ -85,7 +88,11 @@ export const inserir = async (req: Request, res: Response) => {
 
 export const listar = async (req: Request, res: Response) => {
   try {
-    const rodadas = await prisma.rodada.findMany();
+    const rodadas = await prisma.rodada.findMany({
+      orderBy: {
+        criado: "asc",
+      },
+    });
 
     res.status(200).send({
       message: "Listagem de Rodadas",

@@ -157,7 +157,7 @@
 <script src="./js/mostrarTimes.js"></script>
 <script>
   let usuario = {}
-  const idRodada = "842e92f7-6ca4-4b86-957e-caa51cea31ba"
+  const idRodada = "c79e3137-27eb-4fa8-bf7a-6427318af471"
   const premioFinalElement = document.querySelector('#premioFinal')
   let premioFinalNumber = 0
   const cred = document.querySelector('#creditos')
@@ -176,6 +176,7 @@
 
   const getPremioFinal = async () => {
     const res = await api.get('/rodada/listar/premiofinal/' + idRodada)
+    console.log(res)
     const premioFinal = res.data.premioFinal
     const premioFinalFormatado = premioFinal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
     premioFinalElement.innerHTML = premioFinalFormatado
