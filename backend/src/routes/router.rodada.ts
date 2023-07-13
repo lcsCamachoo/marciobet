@@ -9,6 +9,7 @@ import {
   listarPremioFinal,
   atualizarPremioFinal,
   buscarUltimaRodada,
+  atualizarJogos,
 } from "../controller/rodadas";
 
 export const routerRodada = Router();
@@ -18,6 +19,8 @@ routerRodada.post("/rodada/inserir", inserir);
 routerRodada.get("/rodada/listarUltima", buscarUltimaRodada);
 
 routerRodada.get("/rodada/listar", listar);
+
+routerRodada.get("/rodada/buscar/:id", buscar);
 
 routerRodada.get(
   "/rodada/listar/premiofinal/:id",
@@ -31,6 +34,6 @@ routerRodada.put(
 
 routerRodada.put("/rodada/atualizar/:id", atualizar);
 
-routerRodada.delete("/rodada/deletar/:id", deletar);
+routerRodada.put("/rodada/atualizar/jogos/:id", atualizarJogos);
 
-routerRodada.get("/rodada/buscar/:id", buscar);
+routerRodada.delete("/rodada/deletar/:id", deletar);

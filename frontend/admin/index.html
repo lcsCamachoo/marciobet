@@ -3,6 +3,12 @@
   <head>
     <link rel="stylesheet" href="../style.css" />
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
     />
@@ -34,12 +40,55 @@
 
     <title>Página do Administrador</title>
   </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #f5f5f5;
+      width: 100%;
+      min-height: 100vh;
+    }
+    .main {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 10px;
+      width: 100%;
+    }
+    .tabelaUsuario,
+    .tabelaRodada,
+    .tabelaPontuacao {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 10px;
+      text-align: center;
+    }
+    #tabelaUsuario_wrapper,
+    #tabelaRodada_wrapper,
+    #tabelaPontuacao_wrapper {
+      width: 100%;
+    }
+    .error {
+      color: red;
+    }
+    .success {
+      color: green;
+    }
+  </style>
 
   <body>
-    <h1>Painel de Administração</h1>
-
-    <main>
+    <main class="main">
+      <h1>Painel de Administração</h1>
       <div class="tabelaUsuario">
+        <h3>Painel dos usuarios</h3>
         <table id="tabelaUsuario">
           <thead>
             <tr>
@@ -52,6 +101,7 @@
         </table>
       </div>
       <div class="tabelaRodada">
+        <h3>Painel da rodada atual</h3>
         <table id="tabelaRodada">
           <thead>
             <tr>
@@ -65,6 +115,29 @@
               <th>Jogo8</th>
               <th>Jogo9</th>
               <th>Jogo10</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="tabelaPontuacao">
+        <h3>Painel das pontuações</h3>
+        <table id="tabelaPontuacao">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Jogo1</th>
+              <th>Jogo2</th>
+              <th>Jogo3</th>
+              <th>Jogo4</th>
+              <th>Jogo5</th>
+              <th>Jogo6</th>
+              <th>Jogo7</th>
+              <th>Jogo8</th>
+              <th>Jogo9</th>
+              <th>Jogo10</th>
+              <th>Pontuação Final</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -82,16 +155,26 @@
       src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
 
     <script>
       const tabelaUsuario = document.getElementById("tabelaUsuario");
       const tbodyTabelaUsuario = tabelaUsuario.querySelector("tbody");
       const tabelaRodada = document.getElementById("tabelaRodada");
       const tbodyTabelaRodada = tabelaRodada.querySelector("tbody");
-
-      const getRodadas = async () => {
-        const response = await api.get("/rodada/listar");
-        return response.data.rodadas;
+      const tabelaPontuacao = document.getElementById("tabelaPontuacao");
+      const tbodyTabelaPontuacao = tabelaPontuacao.querySelector("tbody");
+      let rodadaId = "";
+      const getRodada = async () => {
+        const response = await api.get("/rodada/listarUltima");
+        return response.data.rodada;
       };
 
       const getUsuarios = async () => {
@@ -99,42 +182,91 @@
         return response.data.usuarios;
       };
 
-      const showRodadas = async () => {
-        const rodadas = await getRodadas();
-        rodadas.forEach((rodada) => {
-          console.log(rodada);
+      const getRespostas = async () => {
+        const response = await api.get("/resposta/listar");
+        return response.data.respostas;
+      };
+
+      const showRespostas = async () => {
+        const respostas = await getRespostas();
+        const rodada = await getRodada();
+
+        tbodyTabelaPontuacao.innerHTML = "";
+
+        respostas.forEach((resp, index) => {
           const tr = document.createElement("tr");
+          let pontuacaoFinal = 0;
+          const pontuacao = {};
           tr.innerHTML = `
-            <td>${rodada.jogo1}</td>
-            <td>${rodada.jogo2}</td>
-            <td>${rodada.jogo3}</td>
-            <td>${rodada.jogo4}</td>
-            <td>${rodada.jogo5}</td>
-            <td>${rodada.jogo6}</td>
-            <td>${rodada.jogo7}</td>
-            <td>${rodada.jogo8}</td>
-            <td>${rodada.jogo9}</td>
-            <td>${rodada.jogo10}</td>
-          `;
-          tbodyTabelaRodada.appendChild(tr);
+                <td>${resp.usuario.nomeCompleto}</td>
+              `;
+          for (let i = 1; i <= 10; i++) {
+            const key = `jogo${i}`;
+            const jogo = rodada[key];
+            const resposta = resp[key];
+            const acerto = resposta === jogo;
+            pontuacaoFinal += acerto ? 1 : 0;
+            pontuacao[key] = acerto
+              ? {
+                  acerto: true,
+                  icon: '<i class="fas fa-check success"></i>',
+                }
+              : {
+                  acerto: false,
+                  icon: '<i class="fas fa-times error"></i>',
+                };
+            tr.innerHTML += `
+                <td class="jogoResposta">${pontuacao[key].icon} </td>
+              `;
+          }
+          tr.innerHTML += `
+                <td class="jogoResposta">${pontuacaoFinal} </td>
+              `;
+
+          tbodyTabelaPontuacao.appendChild(tr);
         });
+        $(document).ready(() => {
+          $("#tabelaPontuacao").DataTable();
+        });
+      };
+
+      const showRodadas = async () => {
+        const rodada = await getRodada();
+        rodadaId = rodada.id;
+        tbodyTabelaRodada.innerHTML = "";
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+
+            <td class="jogoRodada">${rodada.jogo1} </td>
+            <td class="jogoRodada">${rodada.jogo2}</td>
+            <td class="jogoRodada">${rodada.jogo3}</td>
+            <td class="jogoRodada">${rodada.jogo4}</td>
+            <td class="jogoRodada">${rodada.jogo5}</td>
+            <td class="jogoRodada">${rodada.jogo6}</td>
+            <td class="jogoRodada">${rodada.jogo7}</td>
+            <td class="jogoRodada">${rodada.jogo8}</td>
+            <td class="jogoRodada">${rodada.jogo9}</td>
+            <td class="jogoRodada">${rodada.jogo10}</td>
+            <td id="actionRodada"><button class="btn btn-primary" id="btnEditRodada" onclick="hcEditarRodada()">Editar rodada</button></td>
+
+          `;
+        tbodyTabelaRodada.appendChild(tr);
         $(document).ready(() => {
           $("#tabelaRodada").DataTable();
         });
       };
-      showRodadas();
 
       const showUsuarios = async () => {
         const usuarios = await getUsuarios();
+        tbodyTabelaUsuario.innerHTML = "";
         usuarios.forEach((usuario) => {
-          console.log(usuario);
           const tr = document.createElement("tr");
           tr.innerHTML = `
             <td>${usuario.nomeCompleto}</td>
             <td>${usuario.creditos}</td>
             <td>
-              <button onclick="editarCredito('${usuario.id}')">Editar Crédito</button>
-              <button onclick="excluirUsuario('${usuario.id}')">Excluir Usuário</button>
+              <button class="btn btn-primary" onclick="editarCredito('${usuario.id}')">Editar Crédito</button>
+              <button class="btn btn-primary" onclick="excluirUsuario('${usuario.id}')">Excluir Usuário</button>
             </td>
           `;
           tbodyTabelaUsuario.appendChild(tr);
@@ -143,7 +275,48 @@
           $("#tabelaUsuario").DataTable();
         });
       };
-      showUsuarios();
+
+      const hcEditarRodada = async () => {
+        const jogosElement = document.querySelectorAll(".jogoRodada");
+        const actionRodada = document.getElementById("actionRodada");
+        jogosElement.forEach((jogo) => {
+          jogo.setAttribute("contenteditable", "true");
+        });
+        // botao cancelar
+        const btnCancel = document.createElement("button");
+        btnCancel.setAttribute("onclick", "cancelarEdicaoRodada()");
+        btnCancel.innerHTML = "Cancelar";
+        btnCancel.classList.add("btn");
+        btnCancel.classList.add("btn-primary");
+
+        actionRodada.appendChild(btnCancel);
+        // fim botao cancelar
+        // botao editar
+        const btnEditRodada = document.getElementById("btnEditRodada");
+        btnEditRodada.innerHTML = "Salvar";
+        btnEditRodada.setAttribute("onclick", "salvarRodadaEditada()");
+        // fim botao editar
+      };
+
+      const cancelarEdicaoRodada = async () => {
+        await showRodadas();
+      };
+
+      const salvarRodadaEditada = async () => {
+        const jogosElement = document.querySelectorAll(".jogoRodada");
+        const jogos = {};
+        jogosElement.forEach((jogo, index) => {
+          jogos[`jogo${index + 1}`] = jogo.innerHTML;
+        });
+
+        // Enviar a requisição para atualizar o crédito do usuário
+        const res = await api.put("/rodada/atualizar/jogos/" + rodadaId, jogos);
+        console.log(res);
+        if (res.status === 200) {
+          alert("Rodada atualizada com sucesso!");
+          await main();
+        }
+      };
 
       const editarCredito = (userId) => {
         const creditos = prompt("Digite o novo valor de crédito:");
@@ -175,6 +348,10 @@
             });
         }
       };
+      const main = async () => {
+        await Promise.all([showUsuarios(), showRodadas(), showRespostas()]);
+      };
+      main();
     </script>
   </body>
 </html>

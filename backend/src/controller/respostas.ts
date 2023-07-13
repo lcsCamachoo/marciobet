@@ -57,11 +57,15 @@ export const inserir = async (req: Request, res: Response) => {
 
 export const listar = async (req: Request, res: Response) => {
   try {
-    const respostas = await prisma.respostas.findMany();
+    const respostas = await prisma.respostas.findMany({
+      include: {
+        usuario: true,
+      },
+    });
 
     res.status(200).send({
       message: "Listagem de respostas",
-      data: respostas,
+      respostas,
       error: false,
       success: true,
     });
