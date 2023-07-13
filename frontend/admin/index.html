@@ -29,23 +29,48 @@
       charset="utf8"
       src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
     ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/api.js"></script>
 
     <title>Página do Administrador</title>
   </head>
+
   <body>
     <h1>Painel de Administração</h1>
 
-    <h2>Dados dos Usuários</h2>
-    <table id="myTable">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Crédito</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <main>
+      <div class="tabelaUsuario">
+        <table id="tabelaUsuario">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Crédito</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="tabelaRodada">
+        <table id="tabelaRodada">
+          <thead>
+            <tr>
+              <th>Jogo1</th>
+              <th>Jogo2</th>
+              <th>Jogo3</th>
+              <th>Jogo4</th>
+              <th>Jogo5</th>
+              <th>Jogo6</th>
+              <th>Jogo7</th>
+              <th>Jogo8</th>
+              <th>Jogo9</th>
+              <th>Jogo10</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </main>
 
     <script
       type="text/javascript"
@@ -57,11 +82,12 @@
       src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="./js/api.js"></script>
 
     <script>
-      const table = document.getElementById("myTable");
-      const tbody = table.querySelector("tbody");
+      const tabelaUsuario = document.getElementById("tabelaUsuario");
+      const tbodyTabelaUsuario = tabelaUsuario.querySelector("tbody");
+      const tabelaRodada = document.getElementById("tabelaRodada");
+      const tbodyTabelaRodada = tabelaRodada.querySelector("tbody");
 
       const getUsuarios = async () => {
         const response = await api.get("/usuario/listar");
@@ -81,10 +107,10 @@
               <button onclick="excluirUsuario('${usuario.id}')">Excluir Usuário</button>
             </td>
           `;
-          tbody.appendChild(tr);
+          tbodyTabelaUsuario.appendChild(tr);
         });
         $(document).ready(() => {
-          $("#myTable").DataTable();
+          $("#tabelaUsuario").DataTable();
         });
       };
       showUsuarios();

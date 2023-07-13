@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Registro de Usuário</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/api.js"></script>
   </head>
   <body>
     <h1>Registro de Usuário</h1>
@@ -37,7 +39,7 @@
       event.preventDefault();
       const formData = new FormData(form);
       const data = Object.fromEntries(formData);
-      axios
+      api
         .post("https://bet-marcio.onrender.com/usuario/inserir", data)
         .then((response) => {
           alert("Usuário registrado com sucesso!");

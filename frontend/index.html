@@ -30,7 +30,7 @@
         alert("Login realizado com sucesso!");
         document.cookie = `token-bet=${res.data.token}`;
         document.cookie = `id-user=${res.data.usuario.id}`;
-        window.location.href = "/user.html";
+        window.location.href = "/user";
       } else {
         alert("Erro ao realizar login!");
       }

@@ -73,7 +73,7 @@ export const inserir = async (req: Request, res: Response) => {
     res.status(200).send({
       message: "Rodada inserida com sucesso",
       date: new Date(),
-      response: rodada,
+      rodada,
       error: false,
       success: true,
     });
@@ -96,7 +96,7 @@ export const listar = async (req: Request, res: Response) => {
 
     res.status(200).send({
       message: "Listagem de Rodadas",
-      data: rodadas,
+      rodadas,
       error: false,
       success: true,
     });
@@ -145,7 +145,7 @@ export const atualizar = async (req: Request, res: Response) => {
 
     res.status(200).send({
       message: "Rodada atualizada com sucesso",
-      data: rodadas,
+      rodadas,
       error: false,
       success: true,
     });
@@ -170,7 +170,7 @@ export const deletar = async (req: Request, res: Response) => {
 
     res.status(200).send({
       message: "Rodada deletada com sucesso",
-      data: rodadas,
+      rodadas,
       error: false,
       success: true,
     });
@@ -195,7 +195,7 @@ export const buscar = async (req: Request, res: Response) => {
 
     res.status(200).send({
       message: "Rodada encontrada",
-      data: rodadas,
+      rodadas,
       error: false,
       success: true,
     });

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Página do Usuário</title>
     <link rel="stylesheet" href="/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/api.js"></script>
   </head>
   <body>
     <h1 class="username"></h1>
@@ -23,7 +25,6 @@
     <h2>Sacar Saldo</h2>
     <button onclick="sacarSaldo()">Sacar Saldo</button>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       const username = document.querySelector(".username");
       const saldo = document.querySelector(".saldo");
