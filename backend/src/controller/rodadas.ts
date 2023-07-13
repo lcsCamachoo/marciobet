@@ -1,6 +1,32 @@
 import { Request, Response } from "express";
 import { prisma } from "../../prisma/client";
 
+export const buscarUltimaRodada = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const rodada = await prisma.rodada.findFirst({
+      orderBy: {
+        criado: "desc",
+      },
+    });
+
+    res.status(200).send({
+      message: "Listagem da ultima rodada",
+      rodada,
+      error: false,
+      success: true,
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: "Ocorreu um erro ao listar a ultima rodada",
+      error: true,
+      success: false,
+    });
+  }
+};
+
 export const listarPremioFinal = async (
   req: Request,
   res: Response,

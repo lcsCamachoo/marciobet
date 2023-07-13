@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
@@ -89,10 +89,40 @@
       const tabelaRodada = document.getElementById("tabelaRodada");
       const tbodyTabelaRodada = tabelaRodada.querySelector("tbody");
 
+      const getRodadas = async () => {
+        const response = await api.get("/rodada/listar");
+        return response.data.rodadas;
+      };
+
       const getUsuarios = async () => {
         const response = await api.get("/usuario/listar");
         return response.data.usuarios;
       };
+
+      const showRodadas = async () => {
+        const rodadas = await getRodadas();
+        rodadas.forEach((rodada) => {
+          console.log(rodada);
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${rodada.jogo1}</td>
+            <td>${rodada.jogo2}</td>
+            <td>${rodada.jogo3}</td>
+            <td>${rodada.jogo4}</td>
+            <td>${rodada.jogo5}</td>
+            <td>${rodada.jogo6}</td>
+            <td>${rodada.jogo7}</td>
+            <td>${rodada.jogo8}</td>
+            <td>${rodada.jogo9}</td>
+            <td>${rodada.jogo10}</td>
+          `;
+          tbodyTabelaRodada.appendChild(tr);
+        });
+        $(document).ready(() => {
+          $("#tabelaRodada").DataTable();
+        });
+      };
+      showRodadas();
 
       const showUsuarios = async () => {
         const usuarios = await getUsuarios();

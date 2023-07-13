@@ -8,11 +8,14 @@ import {
   buscar,
   listarPremioFinal,
   atualizarPremioFinal,
+  buscarUltimaRodada,
 } from "../controller/rodadas";
 
 export const routerRodada = Router();
 
 routerRodada.post("/rodada/inserir", inserir);
+
+routerRodada.get("/rodada/listarUltima", buscarUltimaRodada);
 
 routerRodada.get("/rodada/listar", listar);
 
