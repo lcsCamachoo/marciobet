@@ -157,12 +157,10 @@ const showJogos = () => {
         question.querySelector(".dia").innerHTML = jogo.dia;
       }
     }
-    question.querySelector(".horario").innerHTML = jogo.horario;
+    question.querySelector(".horario").innerHTML = `(${jogo.horario})`;
     question.querySelector(".indexJogo").innerHTML += String(
       " " + Number(index + 1)
     );
-    question.querySelector(".time1").innerHTML = jogo.time1;
-    question.querySelector(".time2").innerHTML = jogo.time2;
     question.querySelector(".time1Radio").innerHTML = jogo.time1;
     question.querySelector(".time2Radio").innerHTML = jogo.time2;
     question.querySelector(".labelTime1 img").src = times[jogo.time1].img;

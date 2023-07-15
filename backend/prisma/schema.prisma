@@ -22,7 +22,7 @@ model Usuario {
 }
 
 model Rodada {
-  id          String   @id @default(uuid())
+  id          String      @id @default(uuid())
   jogo1       String?
   jogo2       String?
   jogo3       String?
@@ -33,9 +33,10 @@ model Rodada {
   jogo8       String?
   jogo9       String?
   jogo10      String?
-  criado      DateTime @default(now())
-  atualizado  DateTime @updatedAt
-  premioFinal Int      @default(1000)
+  criado      DateTime    @default(now())
+  atualizado  DateTime    @updatedAt
+  premioFinal Int         @default(1000)
+  respostas   Respostas[]
 }
 
 model Respostas {
@@ -54,4 +55,6 @@ model Respostas {
   atualizado DateTime @updatedAt
   usuarioId  String
   usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+  Rodada     Rodada?  @relation(fields: [rodadaId], references: [id])
+  rodadaId   String?
 }

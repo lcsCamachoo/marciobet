@@ -1,40 +1,144 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Login</title>
-  </head>
-  <body>
-    <h1>Login</h1>
-    <form action="/login" method="POST">
-      <label for="email">Apelido ou Email:</label>
-      <input type="text" id="email" name="email" required /><br /><br />
+<html lang="en">
 
-      <label for="senha">Senha:</label>
-      <input type="password" id="senha" name="senha" required /><br /><br />
-
-      <input type="submit" value="Entrar" />
-    </form>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Quiz - Bet Legal</title>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script>
-    const form = document.querySelector("form");
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
-      const res = await axios.post(
-        "https://bet-marcio.onrender.com/usuario/login",
-        data
-      );
-      if (res.data.success) {
-        alert("Login realizado com sucesso!");
-        document.cookie = `token-bet=${res.data.token}`;
-        document.cookie = `id-user=${res.data.usuario.id}`;
-        window.location.href = "/user";
-      } else {
-        alert("Erro ao realizar login!");
-      }
-      console.log(res);
-    });
-  </script>
-</html>
+  <script src="./js/api.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="headerContainer container">
+      <div class="logoContainer">
+        <img class="logo" src="./assets/logo-bet-nobg.png" alt="logo" />
+      </div>
+      <div class="userContainer">
+        <div class="imgContainer">
+          <img class="userIcon thumbnail rounded img-fluid"
+            src="https://static.wixstatic.com/media/83bf78_12e7eda0cabc44ab9f862da75c98dd24~mv2.png/v1/fill/w_78,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-santos-fc-santos-sao-paulo-esporte-clube-bahia-sport-club-corinthians-paul.png"
+            alt="user" />
+          <span id="userName"></span>
+        </div>
+        <div class="user">
+          <i class="fas fa-coins"></i>
+          <span id="creditos"></span>
+        </div>
+        <div class="logoutContainer">
+          <button id="btnLogout" class="btn btn-danger">Sair</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <img class="bg" src="./assets/bg-bet-legal.jpg" alt="" />
+
+
+    <div class="container">
+      <div class="carrousselContainer">
+        <div class=" w-100 align-items-center justify-content-center">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block img-carrousel rounded w-100" src="./assets/carrousel1.jpg" alt="Primeiro Slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block  img-carrousel rounded w-100" src="./assets/carrousel2.jpg" alt="Segundo Slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block  img-carrousel rounded w-100" src="./assets/carrousel3.jpg" alt="Terceiro Slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Próximo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div style="gap: 10px;" class="col d-flex flex-column justify-content-center align-items-center">
+          <span id="title">BET Brasileirão 2023 – RODADA 1</span>
+          <div class="questions">
+            <div class="questionModel">
+              <p class="dia">SÁBADO 15 DE ABRIL</p>
+              <div class="desc">
+                <span class="indexJogo">JOGO -</span>
+                <span class="horario"></span> <span class="time1"></span>
+                <span class="time2"></span>
+              </div>
+              <div class="options">
+                <div class="option">
+                  <input type="radio" class="time1Input" id="time1Input" />
+                  <label for="time1Input" class="labelTime1">
+                    <img class="icon" src="" />
+                    <span class="time1Radio"></span>
+                  </label>
+                </div>
+                <div class="option">
+                  <input type="radio" class="empateInput radio" id="empateInput" value="Empate" />
+                  <label for="empateInput" class="labelEmpate">
+                    <img class="icon" src="https://contmoura.com.br/wp-content/uploads/2019/09/x-png-icon-8.png" />
+                    <span>Empate</span>
+                  </label>
+                </div>
+                <div class="option">
+                  <input type="radio" class="time2Input radio" id="time2Input" />
+                  <label for="time2Input" class="labelTime2">
+                    <img class="icon" src="" />
+                    <span class="time2Radio"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="submit">
+            <button id="btnEnviar" class=" btn btn-primary">Enviar</button>
+          </div>
+
+          <div class="countador d-flex flex-column align-items-center justify-content-center">
+            <span>Tempo restante para o fim da rodada</span>
+            <span id="countdown"></span>
+          </div>
+          <div class="d-flex flex-column align-items-center justify-content-center pb-4">
+            <span>Prêmio Atualizando</span>
+            <span class="title" id="premioFinal"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+<script src="./js/cronometro.js"></script>
+<script src="./js/mostrarTimes.js"></script>
+<!-- JavaScript (Opcional) -->
+<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="index.js"></script>
+<script>

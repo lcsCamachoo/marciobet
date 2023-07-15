@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/api.js"></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+      <label for="email">Apelido ou Email:</label>
+      <input type="text" id="email" name="email" required /><br /><br />
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required /><br /><br />
+
+      <input type="submit" value="Entrar" />
+    </form>
+  </body>
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      const res = await api.post("/usuario/login", data);
+      if (res.data.success) {
+        alert("Login realizado com sucesso!");
+        document.cookie = `token-bet=${res.data.token}; path=/`;
+        document.cookie = `id-user=${res.data.usuario.id}; path=/`;
+        window.location.href = "/";
+      } else {
+        alert("Erro ao realizar login!");
+      }
+      console.log(res);
+    });
+  </script>
+</html>

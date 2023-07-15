@@ -8,6 +8,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
       rel="stylesheet"
@@ -165,13 +166,15 @@
     ></script>
 
     <script>
-      const tabelaUsuario = document.getElementById("tabelaUsuario");
-      const tbodyTabelaUsuario = tabelaUsuario.querySelector("tbody");
-      const tabelaRodada = document.getElementById("tabelaRodada");
-      const tbodyTabelaRodada = tabelaRodada.querySelector("tbody");
-      const tabelaPontuacao = document.getElementById("tabelaPontuacao");
-      const tbodyTabelaPontuacao = tabelaPontuacao.querySelector("tbody");
+      const tabelaUsuario = document.getElementById("tabelaUsuario"),
+        tbodyTabelaUsuario = tabelaUsuario.querySelector("tbody"),
+        tabelaRodada = document.getElementById("tabelaRodada"),
+        tbodyTabelaRodada = tabelaRodada.querySelector("tbody"),
+        tabelaPontuacao = document.getElementById("tabelaPontuacao"),
+        tbodyTabelaPontuacao = tabelaPontuacao.querySelector("tbody");
+
       let rodadaId = "";
+
       const getRodada = async () => {
         const response = await api.get("/rodada/listarUltima");
         return response.data.rodada;
@@ -183,7 +186,7 @@
       };
 
       const getRespostas = async () => {
-        const response = await api.get("/resposta/listar");
+        const response = await api.get("/resposta/listarPorRodada/" + rodadaId);
         return response.data.respostas;
       };
 
@@ -204,7 +207,7 @@
             const key = `jogo${i}`;
             const jogo = rodada[key];
             const resposta = resp[key];
-            const acerto = resposta === jogo;
+            const acerto = resposta == jogo;
             pontuacaoFinal += acerto ? 1 : 0;
             pontuacao[key] = acerto
               ? {

@@ -3,7 +3,7 @@ import { prisma } from "../../prisma/client";
 
 export const inserir = async (req: Request, res: Response) => {
   try {
-    const { respostas, usuarioId } = req.body;
+    const { respostas, usuarioId, rodadaId } = req.body;
 
     const {
       jogo1,
@@ -35,6 +35,11 @@ export const inserir = async (req: Request, res: Response) => {
             id: usuarioId,
           },
         },
+        Rodada: {
+          connect: {
+            id: rodadaId,
+          },
+        },
       },
     });
 
@@ -49,6 +54,37 @@ export const inserir = async (req: Request, res: Response) => {
     console.log(error);
     res.status(400).send({
       message: "Ocorreu um erro ao inserir a resposta",
+      error: true,
+      success: false,
+    });
+  }
+};
+
+export const listarPorRodada = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const { id } = req.params;
+
+    const respostas = await prisma.respostas.findMany({
+      where: {
+        rodadaId: id,
+      },
+      include: {
+        usuario: true,
+      },
+    });
+
+    res.status(200).send({
+      message: "Listagem de respostas",
+      respostas,
+      error: false,
+      success: true,
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: "Ocorreu um erro ao listar as respostas",
       error: true,
       success: false,
     });
