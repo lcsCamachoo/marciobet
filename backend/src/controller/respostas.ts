@@ -83,6 +83,7 @@ export const listarPorRodada = async (
       success: true,
     });
   } catch (error) {
+    console.log(error);
     res.status(400).send({
       message: "Ocorreu um erro ao listar as respostas",
       error: true,
