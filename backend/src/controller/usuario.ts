@@ -155,6 +155,9 @@ export const buscar = async (req: Request, res: Response) => {
       where: {
         id: String(id),
       },
+      include: {
+        Respostas: true,
+      },
     });
 
     if (usuario) {
