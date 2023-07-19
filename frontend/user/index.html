@@ -230,7 +230,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="custom-loader"></div>
+            <div class="c-modal-loader">
+              <div class="custom-loader"></div>
+            </div>
             <code id="codePixContainer" class="hide">
               <div class="copyIcon">
                 <i class="fa fa-copy"></i>
@@ -291,7 +293,7 @@
       // Aqui você pode adicionar a lógica para processar a inserção de crédito
       // Pode ser uma requisição AJAX para o servidor ou qualquer outra ação necessária
       const codePixContainer = document.getElementById("codePixContainer");
-      const loader = document.querySelector(".custom-loader");
+      const loader = document.querySelector(".c-modal-loader");
       codePixContainer.classList.remove("hide");
       loader.classList.add("hide");
       codePixContainer.addEventListener("click", copyPix);
@@ -414,11 +416,9 @@
         return pontuacao;
       });
 
-      // pontuacaoArray.sort((a, b) => {
-      //   if (a.jogo10.pontuacaoFinal > b.jogo10.pontuacaoFinal) return -1;
-      //   if (a.jogo10.pontuacaoFinal < b.jogo10.pontuacaoFinal) return 1;
-      //   return 0;
-      // });
+      pontuacaoArray.sort((a, b) => {
+        return new Date(a.data) - new Date(b.data);
+      });
 
       console.log({ pontuacaoArray });
 
@@ -451,8 +451,10 @@
           },
         });
       });
-      document.querySelector(".c-loader").classList.add("hide");
-      document.querySelector(".tabelaPontuacao").classList.remove("hide");
+      setTimeout(() => {
+        document.querySelector(".c-loader").classList.add("hide");
+        document.querySelector(".tabelaPontuacao").classList.remove("hide");
+      }, 1000);
     };
 
     const main = async () => {
