@@ -44,6 +44,20 @@ export const inserir = async (req: Request, res: Response) => {
       req.body;
     console.log(nomeCompleto, email, senha);
 
+    if (
+      !nomeCompleto ||
+      !email ||
+      !senha ||
+      !chavePix ||
+      !apelido
+    ) {
+      return res.status(400).send({
+        message: "Dados inválidos",
+        error: true,
+        success: false,
+      });
+    }
+
     const usuario = await prisma.usuario.create({
       data: {
         nomeCompleto,

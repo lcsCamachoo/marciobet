@@ -21,11 +21,10 @@
       <div class="logoContainer">
         <img class="logo" src="./assets/logo-bet-nobg.png" alt="logo" />
       </div>
+      <div class="custom-loader"></div>
       <div class="userContainer">
         <div class="imgContainer">
-          <img class="userIcon thumbnail rounded img-fluid"
-            src="https://static.wixstatic.com/media/83bf78_12e7eda0cabc44ab9f862da75c98dd24~mv2.png/v1/fill/w_78,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-santos-fc-santos-sao-paulo-esporte-clube-bahia-sport-club-corinthians-paul.png"
-            alt="user" />
+          <img class="userIcon thumbnail rounded img-fluid" src="./assets/user.jpg" alt="user" />
           <span id="userName"></span>
         </div>
         <div class="user">
@@ -78,7 +77,15 @@
     <div class="container">
       <div class="row">
         <div style="gap: 10px;" class="col d-flex flex-column justify-content-center align-items-center">
-          <span id="title">BET Brasileirão 2023 – RODADA 1</span>
+          <div class="row">
+            <div class="menu row">
+              <a type="button" id="btnLinkPerfil" href="/user" class="btn btn-primary btn-menu hide">Perfil</a>
+              <a type="button" href="/ranking" class="btn btn-primary btn-menu">Regras</a>
+              <button class="btn btn-primary btn-menu">Termos</button>
+            </div>
+          </div>
+          <span id="title">Brasileirão A - 2023</span>
+          <p id="title">Rodada 1</p>
           <div class="questions">
             <div class="questionModel">
               <p class="dia">SÁBADO 15 DE ABRIL</p>

@@ -27,7 +27,6 @@ const getIdUserCookie = () => {
 
 const verificaLogin = () => {
   const { idUser } = getIdUserCookie();
-  console.log();
   return idUser ? true : false;
 };
 
@@ -35,8 +34,8 @@ const logout = () => {
   document.cookie = "id-user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   document.cookie =
     "token-bet=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  window.location.reload();
   usuario = {};
+  window.location.reload();
 };
 
 //gets
@@ -48,8 +47,8 @@ const getUltimaRodada = async () => {
 
 const getUsuario = async () => {
   const isLogged = verificaLogin();
+  const loader = document.querySelector(".custom-loader");
   if (!isLogged) {
-    userContainerElement.style.display = "none";
     const buttonsContainer = document.createElement("div");
     buttonsContainer.classList.add("buttonsContainer");
     const buttonLogin = document.createElement("button");
@@ -58,7 +57,7 @@ const getUsuario = async () => {
     buttonCadastro.innerHTML = "Cadastro";
     buttonLogin.className = "btnLogin btn btn-primary";
     buttonCadastro.className = "btnCadastro btn btn-primary";
-
+    loader.classList.add("hide");
     headerContainerElement.appendChild(buttonsContainer);
     buttonsContainer.appendChild(buttonLogin);
     buttonsContainer.appendChild(buttonCadastro);
@@ -70,6 +69,10 @@ const getUsuario = async () => {
     });
     return;
   }
+  document.querySelector("#btnLinkPerfil").classList.remove("hide");
+  loader.classList.add("hide");
+  userContainerElement.style.display = "flex";
+
   const { idFormatado } = getIdUserCookie();
   const res = await api.get("/usuario/buscar/" + idFormatado);
   usuario = res.data.usuario;
@@ -126,7 +129,6 @@ const editarCredito = async (userId, creditosUsuario) => {
 
 //posts
 const enviarRespostas = async () => {
-  if (!confirm("Você tem certeza que deseja enviar as respostas?")) return;
   const { idUser, idFormatado } = getIdUserCookie();
   if (!idUser) {
     alert("Você precisa estar logado para enviar as respostas!");
@@ -155,7 +157,8 @@ const enviarRespostas = async () => {
     getUsuario(),
     getPremioFinal(),
   ]);
-  window.location.reload();
+  alert("Respostas enviadas com sucesso!");
+  window.location.href = "/user";
 };
 
 //first load

@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hide {
+  display: none !important;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: linear-gradient(
+    to right,
+    #010103,
+    #0f0e38,
+    #242188,
+    #302db8,
+    #3432c4
+  );
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  color-scheme: dark;
+  color: #fff;
+  margin-top: 20px;
+  padding: 20px 0 50px 0;
+}
+
+.bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  object-fit: cover;
+  object-position: top;
+  z-index: -1;
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+td {
+  color: #010103;
+}
+
+.dataTables_length,
+.dataTables_filter,
+.dataTables_info,
+.dataTables_paginate {
+  color: #fff !important;
+}
+
+.tabelaPontuacao {
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  text-align: center;
+  overflow-x: auto;
+}
+#tabelaPontuacao_wrapper {
+  width: 100%;
+}
+.error {
+  color: red;
+}
+.success {
+  color: green;
+}
+
+.play-btn {
+  background-color: rgb(255, 123, 0);
+  color: #fff;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
+}
+.play-btn:hover {
+  background-color: rgb(255, 162, 0);
+  transform: scale(1.1);
+}
+
+.c-loader {
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-loader {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #fff 94%, #0000) top/16px 16px
+      no-repeat,
+    conic-gradient(#0000 30%, #fff);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 16px), #000 0);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

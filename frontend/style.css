@@ -16,11 +16,6 @@ main {
   margin-top: 20px;
 }
 
-@media screen and (min-width: 768px) {
-  main {
-  }
-}
-
 body {
   width: 100%;
   min-height: 100vh;
@@ -55,11 +50,11 @@ header {
 .userContainer {
   margin-left: auto;
   color: #fff;
-  display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   flex-direction: column;
+  display: none;
 }
 
 .buttonsContainer {
@@ -68,6 +63,16 @@ header {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+.btn-menu {
+  width: 100px;
+  height: 40px;
+  border: none;
+  background-color: #3432c4;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: #fff;
 }
 
 @media (max-width: 768px) {
@@ -192,6 +197,7 @@ header {
   padding: 5px;
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .option:hover {
@@ -202,9 +208,6 @@ header {
   background-color: #3432c4;
   color: #fff !important;
   transform: scale(1.1);
-}
-
-.radio {
 }
 
 .desc {
@@ -238,9 +241,24 @@ header {
   gap: 5px;
 }
 
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+#countdown {
+  font-size: 5rem;
+  font-weight: 700;
+  color: orange;
+  gap: 5px;
+}
+
 #premioFinal {
   font-size: 5rem;
   color: #78e010;
+  font-weight: 700;
   animation: blinker 2s linear infinite;
 }
 
@@ -248,16 +266,44 @@ header {
   max-height: 350px;
 }
 
+.custom-loader {
+  margin-left: auto;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 4px), #000 0);
+  background: radial-gradient(farthest-side, #766df4 94%, #0000) top/4px 4px
+      no-repeat,
+    conic-gradient(#0000 30%, #766df4);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.hide {
+  display: none !important;
+}
+
 @media screen and (max-width: 768px) {
   .img-carrousel {
     max-height: 200px;
   }
+
   #premioFinal {
     font-size: 2.5rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  #countdown {
+    font-size: 2.5rem;
+    color: orange;
   }
 }
 

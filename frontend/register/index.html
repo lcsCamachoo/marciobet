@@ -2,36 +2,186 @@
 <html>
   <head>
     <title>Registro de Usuário</title>
+    <script src="../js/verificaLogin.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../js/api.js"></script>
   </head>
-  <body>
-    <h1>Registro de Usuário</h1>
-    <form action="/registrar" method="POST">
-      <label for="nome">Nome completo:</label>
-      <input
-        type="text"
-        id="nomeCompleto"
-        name="nomeCompleto"
-        required
-      /><br /><br />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Roboto", sans-serif;
+    }
+    body {
+      overflow: hidden;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      background: linear-gradient(
+        to right,
+        #010103,
+        #0f0e38,
+        #242188,
+        #302db8,
+        #3432c4
+      );
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 100vh;
+      margin-top: 20px;
+      padding: 20px 0 50px 0;
+      color: #fff;
+    }
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required /><br /><br />
+    .bg {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      object-fit: cover;
+      object-position: top;
+      z-index: -1;
+    }
 
-      <label for="chavePix">Chave Pix:</label>
-      <input type="text" id="chavePix" name="chavePix" required /><br /><br />
+    .hide {
+      display: none;
+    }
 
-      <label for="apelido">Apelido:</label>
-      <input type="text" id="apelido" name="apelido" required /><br /><br />
+    .form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
 
-      <label for="senha">Senha:</label>
-      <input type="password" id="senha" name="senha" required /><br /><br />
+    form {
+      background-color: white;
+      padding: 20px;
+      max-width: 600px;
+      min-width: 400px;
+      margin: 0 auto;
+      border-radius: 8px;
+      color: #010103;
+    }
 
-      <input type="submit" value="Registrar" />
-    </form>
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: navy;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    p {
+      margin: 0;
+      margin-top: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .banner {
+      width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+  </style>
+  <body class="hide">
+    <main>
+      <img class="bg" src="../assets/bg-bet-legal.jpg" alt="" />
+
+      <div class="container">
+        <div class="form">
+          <h1>Registro de Usuário</h1>
+          <form action="/registrar" method="POST">
+            <label class="form-label" for="nome">Nome completo:</label>
+            <input
+              class="input form-control"
+              type="text"
+              id="nomeCompleto"
+              name="nomeCompleto"
+              required
+            />
+
+            <label class="form-label" for="email">Email:</label>
+            <input
+              type="email"
+              class="input form-control"
+              id="email"
+              name="email"
+              required
+            />
+
+            <label class="form-label" for="chavePix">Chave Pix:</label>
+            <input
+              class="input form-control"
+              type="text"
+              id="chavePix"
+              name="chavePix"
+              required
+            />
+
+            <label class="form-label" for="apelido">Apelido:</label>
+            <input
+              class="input form-control"
+              type="text"
+              id="apelido"
+              name="apelido"
+              required
+            />
+
+            <label class="form-label" for="senha">Senha:</label>
+            <input
+              class="input form-control"
+              type="password"
+              id="senha"
+              name="senha"
+              required
+            />
+
+            <input
+              type="submit"
+              class="btn btn-primary w-100"
+              value="Registrar"
+            />
+            <p>Se já tiver conta, faça <a href="/login">login</a></p>
+          </form>
+        </div>
+      </div>
+    </main>
   </body>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script>
     const form = document.querySelector("form");
