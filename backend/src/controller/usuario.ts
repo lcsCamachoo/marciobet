@@ -172,7 +172,7 @@ export const buscar = async (req: Request, res: Response) => {
       include: {
         Respostas: {
           orderBy: {
-            criado: "desc",
+            criado: "asc",
           },
         },
       },
