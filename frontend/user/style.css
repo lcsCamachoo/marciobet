@@ -55,26 +55,6 @@ main {
   gap: 10px;
 }
 
-#opcoes {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 10px;
-  width: 100%;
-  margin-top: 20px;
-  animation: fade 0.3s ease-in-out 0s 1 normal forwards;
-}
-
-.sacar {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  transition: all 0.5s;
-}
-
 td {
   color: #010103;
 }
@@ -124,4 +104,49 @@ td {
   to {
     opacity: 1;
   }
+}
+.custom-loader {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 4px), #000 0);
+  background: radial-gradient(farthest-side, #766df4 94%, #0000) top/4px 4px
+      no-repeat,
+    conic-gradient(#0000 30%, #766df4);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+#codePixContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.2rem 0.4rem;
+  font-size: 87.5%;
+  color: #fff;
+  background-color: #212529;
+  border-radius: 0.2rem;
+  position: relative;
+}
+
+#codePix {
+  line-height: 2;
+}
+
+.copyIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 2px;
+  font-size: 1rem;
+}
+
+.fa-copy {
+  color: #fff;
 }

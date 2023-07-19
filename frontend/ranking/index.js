@@ -33,7 +33,8 @@ const getUsuario = async () => {
 
 const getRespostas = async () => {
   const response = await api.get("/resposta/listarPorRodada/" + rodadaId);
-  return response.data.respostas;
+  const resposta = response.data.respostas;
+  return resposta;
 };
 
 const getRodada = async () => {

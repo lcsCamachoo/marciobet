@@ -88,7 +88,7 @@ export const inserir = async (req: Request, res: Response) => {
 
 export const listar = async (req: Request, res: Response) => {
   try {
-    const usuarios = await prisma.usuario.findMany();
+    const usuarios = await prisma.usuario.findMany({});
 
     res.status(200).send({
       message: "Listagem de usuários",
@@ -170,7 +170,11 @@ export const buscar = async (req: Request, res: Response) => {
         id: String(id),
       },
       include: {
-        Respostas: true,
+        Respostas: {
+          orderBy: {
+            criado: "desc",
+          },
+        },
       },
     });
 

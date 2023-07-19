@@ -47,7 +47,7 @@ const getUltimaRodada = async () => {
 
 const getUsuario = async () => {
   const isLogged = verificaLogin();
-  const loader = document.querySelector(".custom-loader");
+  const loader = document.querySelector(".loaderC");
   if (!isLogged) {
     const buttonsContainer = document.createElement("div");
     buttonsContainer.classList.add("buttonsContainer");
@@ -146,6 +146,8 @@ const enviarRespostas = async () => {
     alert("Você não possui créditos suficientes para apostar!");
     return;
   }
+  alert("Respostas enviadas com sucesso!");
+
   await Promise.all([
     api.post("/resposta/inserir", {
       respostas,
@@ -157,7 +159,6 @@ const enviarRespostas = async () => {
     getUsuario(),
     getPremioFinal(),
   ]);
-  alert("Respostas enviadas com sucesso!");
   window.location.href = "/user";
 };
 

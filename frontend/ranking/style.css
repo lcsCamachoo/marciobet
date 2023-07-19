@@ -92,6 +92,7 @@ td {
   color: #fff;
   transition: all 0.5s ease-in;
   cursor: pointer;
+  margin-top: 20px;
 }
 .play-btn:hover {
   background-color: rgb(255, 162, 0);

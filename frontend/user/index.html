@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
     <link rel="icon" href="https://glitch.com/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>Página do Usuário</title>
     <link rel="stylesheet" href="style.css" />
 
@@ -119,6 +123,10 @@
       <div class="container infos">
         <h1 class="username"></h1>
         <p class="saldo"></p>
+        <p style="font-weight: 700; color: red">
+          Ao inserir créditos, informe seu nome de usuário, apelido e e-mail na
+          área pix do seu banco
+        </p>
         <a type="button" href="/" class="btn play-btn">Jogar agora</a>
 
         <h2>Inserir Créditos</h2>
@@ -127,13 +135,25 @@
         </button>
 
         <div id="opcoes" class="hide">
-          <button class="btn btn-primary btn-cred" onclick="inserirCredito(10)">
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#modalId"
+            class="btn btn-primary btn-cred"
+            onclick="inserirCredito(10)"
+          >
             R$ 10.00
           </button>
-          <button class="btn btn-primary btn-cred" onclick="inserirCredito(50)">
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#modalId"
+            class="btn btn-primary btn-cred"
+            onclick="inserirCredito(50)"
+          >
             R$ 50.00
           </button>
           <button
+            data-bs-toggle="modal"
+            data-bs-target="#modalId"
             class="btn btn-primary btn-cred"
             onclick="inserirCredito(100)"
           >
@@ -143,16 +163,23 @@
 
         <div class="sacar">
           <h2>Sacar Saldo</h2>
-          <button class="btn btn-primary btn-cred" onclick="sacarSaldo()">
+          <button
+            id="btnSacar"
+            class="btn btn-primary btn-cred"
+            onclick="sacarSaldo()"
+          >
             Sacar Saldo
           </button>
         </div>
-
+        <div class="c-loader">
+          <div class="custom-loade"></div>
+        </div>
         <div class="tabelaPontuacao">
           <h3>Painel das pontuações</h3>
           <table id="tabelaPontuacao">
             <thead>
               <tr>
+                <th>Data</th>
                 <th>Jogo1</th>
                 <th>Jogo2</th>
                 <th>Jogo3</th>
@@ -171,6 +198,60 @@
         </div>
       </div>
     </main>
+
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div
+      class="modal fade"
+      id="modalId"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      role="dialog"
+      aria-labelledby="modalTitleId"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+        role="document"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitleId">
+              PIX: Código Copia e Cola
+            </h5>
+            <button
+              type="button"
+              class="btn btn-close btn-danger"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="custom-loader"></div>
+            <code id="codePixContainer" class="hide">
+              <div class="copyIcon">
+                <i class="fa fa-copy"></i>
+              </div>
+              <kbd id="codePix"></kbd>
+            </code>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       type="text/javascript"
       charset="utf8"
@@ -197,18 +278,46 @@
     const tbodyTabelaPontuacao = document.querySelector(
       "#tabelaPontuacao tbody"
     );
+    let usuario = {};
+
+    const copyPix = () => {
+      const codePix = document.getElementById("codePix");
+      const codePixText = codePix.innerText;
+      navigator.clipboard.writeText(codePixText);
+      alert("Código copiado com sucesso!");
+    };
     //utils
     const inserirCredito = (valor) => {
       // Aqui você pode adicionar a lógica para processar a inserção de crédito
       // Pode ser uma requisição AJAX para o servidor ou qualquer outra ação necessária
-      console.log("Inserir crédito de R$" + valor);
-      // Redirecionar o usuário para a página desejada após a inserção de crédito
+      const codePixContainer = document.getElementById("codePixContainer");
+      const loader = document.querySelector(".custom-loader");
+      codePixContainer.classList.remove("hide");
+      loader.classList.add("hide");
+      codePixContainer.addEventListener("click", copyPix);
+      const codigoPixElement = document.getElementById("codePix");
+      if (valor == 10) {
+        codigoPixElement.innerHTML = `00020126580014BR.GOV.BCB.PIX013655f384af-8aa0-431a-9b56-7655ebc1919c520400005303986540510.005802BR5925MARCIO MARQUES DE SOUZA 06009SAO PAULO61080540900062250521z1qv6VVSa8bJmGZ12zebu6304D4BF`;
+        return;
+      }
+      if (valor == 50) {
+        codigoPixElement.innerHTML = `00020126580014BR.GOV.BCB.PIX013655f384af-8aa0-431a-9b56-7655ebc1919c520400005303986540550.005802BR5925MARCIOMARQUES DE SOUZA 06009SAO PAULO61080540900062250521og3gJmHjP0gXPJt12zebu630453B0`;
+        return;
+      }
+      if (valor == 100) {
+        codigoPixElement.innerHTML = `00020126580014BR.GOV.BCB.PIX013655f384af-8aa0-431a-9b56-7655ebc1919c5204000053039865406100.005802BR5925MARCIO MARQUES DE SOUZA 06009SAO PAULO61080540900062250521qkQ3BZmiaWqbnCj12zebu63047CA3`;
+        return;
+      }
     };
 
     const sacarSaldo = () => {
       // Aqui você pode adicionar a lógica para processar o saque de saldo
       // Pode ser uma requisição AJAX para o servidor ou qualquer outra ação necessária
-      console.log("Sacar saldo");
+      const valor = window.prompt("Digite o valor que deseja sacar");
+      if (!valor) return;
+      if (valor > usuario.creditos) return alert("Saldo insuficiente");
+      const link = getLinkWhatsapp(usuario, valor);
+      window.open(link, "_blank");
       // Redirecionar o usuário para a página desejada após o saque de saldo
     };
     const getCookies = () => {
@@ -239,11 +348,20 @@
       return isLogged;
     };
 
+    const getLinkWhatsapp = (usuario, valor) => {
+      const link = `
+      https://api.whatsapp.com/send?phone=5581992129128&text=Solicitação%20de%20saque\n\r%20Pix:${usuario.chavePix}\n\r%20Email:${usuario.email}\n\r%20Nome:${usuario.nomeCompleto}\r\n%20Apelido:${usuario.apelido}\r\n%20Valor:${valor}%20
+      `;
+      return link;
+    };
+
     const getUsuario = async () => {
       verificaLogin();
       const { idFormatado: id } = getIdUserCookie();
       const response = await api.get("/usuario/buscar/" + id);
-      return response.data.usuario;
+      const _usuario = response.data.usuario;
+      usuario = _usuario;
+      return _usuario;
     };
 
     const showUsuario = async () => {
@@ -266,13 +384,11 @@
     const showRespostas = async () => {
       const { Respostas: respostas } = await getRespostas();
       const rodada = await getRodada();
+      console.log({ res: respostas, rod: rodada });
 
       tbodyTabelaPontuacao.innerHTML = "";
 
-      console.log(respostas);
-
-      respostas.forEach((resp, index) => {
-        const tr = document.createElement("tr");
+      const pontuacaoArray = respostas.map((resp) => {
         let pontuacaoFinal = 0;
         const pontuacao = {};
 
@@ -284,21 +400,46 @@
           pontuacaoFinal += acerto ? 1 : 0;
           pontuacao[key] = acerto
             ? {
-                acerto: true,
+                data: resp.criado,
+                pontuacaoFinal,
+                acerto,
                 icon: '<i class="fas fa-check success"></i>',
               }
             : {
-                acerto: false,
+                data: resp.criado,
+                pontuacaoFinal,
+                acerto,
                 icon: '<i class="fas fa-times error"></i>',
               };
-          tr.innerHTML += `
-                <td class="jogoResposta">${pontuacao[key].icon} </td>
-              `;
         }
-        tr.innerHTML += `
-                <td class="jogoResposta">${pontuacaoFinal} </td>
-              `;
+        return pontuacao;
+      });
 
+      pontuacaoArray.sort((a, b) => {
+        if (a.jogo10.pontuacaoFinal > b.jogo10.pontuacaoFinal) return -1;
+        if (a.jogo10.pontuacaoFinal < b.jogo10.pontuacaoFinal) return 1;
+        return 0;
+      });
+
+      console.log({ pontuacaoArray });
+
+      pontuacaoArray.forEach((resp, index) => {
+        const data = new Date(resp.data).toLocaleString();
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+    <td>${data}</td>
+    <td>${resp.jogo1.icon}</td>
+    <td>${resp.jogo2.icon}</td>
+    <td>${resp.jogo3.icon}</td>
+    <td>${resp.jogo4.icon}</td>
+    <td>${resp.jogo5.icon}</td>
+    <td>${resp.jogo6.icon}</td>
+    <td>${resp.jogo7.icon}</td>
+    <td>${resp.jogo8.icon}</td>
+    <td>${resp.jogo9.icon}</td>
+    <td>${resp.jogo10.icon}</td>
+    <td>${resp.jogo10.pontuacaoFinal}</td>
+    `;
         tbodyTabelaPontuacao.appendChild(tr);
       });
       $(document).ready(() => {
@@ -310,6 +451,8 @@
           },
         });
       });
+      // document.querySelector(".c-loader").classList.add("hide");
+      // document.querySelector(".tabelaPontuacao").classList.remove("hide");
     };
 
     const main = async () => {
