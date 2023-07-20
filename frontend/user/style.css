@@ -130,6 +130,26 @@ td {
     transform: rotate(1turn);
   }
 }
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 20px;
+}
+.qrcode-container {
+  width: 100%;
+  height: 300px;
+}
+
+.qrcode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
 #codePixContainer {
   display: flex;
@@ -146,6 +166,7 @@ td {
 
 #codePix {
   line-height: 2;
+  padding: 1.5rem;
 }
 
 .copyIcon {
@@ -154,6 +175,23 @@ td {
   top: 0px;
   right: 2px;
   font-size: 1rem;
+}
+
+.modal-content {
+  min-width: 600px !important;
+  max-width: 800px;
+}
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 700px !important;
+    margin: 1.75rem auto;
+  }
+}
+@media screen and (max-width: 750px) {
+  .modal-content {
+    min-width: 0 !important;
+    margin: auto;
+  }
 }
 
 .fa-copy {
