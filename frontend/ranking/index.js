@@ -2,6 +2,7 @@ const username = document.querySelector(".username");
 const saldo = document.querySelector(".saldo");
 const tbodyTabelaPontuacao = document.querySelector("#tabelaPontuacao tbody");
 let rodadaId = "";
+let initTabelaPontuacao = false;
 
 //utils
 const getCookies = () => {
@@ -24,6 +25,27 @@ const verificaLogin = () => {
   return isLogged;
 };
 
+const getRodadas = async () => {
+  const response = await api.get("/rodada/listar");
+  console.log(response.data.rodadas);
+  const rodadas = response.data.rodadas.reverse();
+  rodadas.forEach((rodada) => {
+    const option = document.createElement("option");
+    option.value = rodada.id;
+    option.innerHTML = rodada.nome;
+    selectRodada.appendChild(option);
+  });
+  return rodadas;
+};
+getRodadas();
+const handleChangeSelectRodada = async () => {
+  rodadaId = selectRodada.value;
+  await showRespostas(true);
+  await showRodadas(true);
+};
+
+selectRodada.addEventListener("change", handleChangeSelectRodada);
+
 const getUsuario = async () => {
   verificaLogin();
   const { idFormatado: id } = getIdUserCookie();
@@ -40,12 +62,18 @@ const getRespostas = async () => {
 const getRodada = async () => {
   const response = await api.get("/rodada/listarUltima");
   rodadaId = response.data.rodada.id;
-
   return response.data.rodada;
 };
 
-const showRespostas = async () => {
-  const rodada = await getRodada();
+const getRodadaById = async (id) => {
+  const response = await api.get("/rodada/buscar/" + id);
+  return response.data.rodada;
+};
+
+const showRespostas = async (porId = false) => {
+  let rodada = {};
+  if (!porId) rodada = await getRodada();
+  if (porId) rodada = await getRodadaById(rodadaId);
   const respostas = await getRespostas();
 
   tbodyTabelaPontuacao.innerHTML = "";
@@ -63,17 +91,15 @@ const showRespostas = async () => {
       pontuacao[key] = acerto
         ? {
             nome: resp.usuario.nomeCompleto,
-
             pontuacaoFinal,
             acerto,
-            icon: '<i class="fas fa-check success"></i>',
+            icon: '<i class="fas fa-check success text-success"></i>',
           }
         : {
             nome: resp.usuario.nomeCompleto,
-
             pontuacaoFinal,
             acerto,
-            icon: '<i class="fas fa-times error"></i>',
+            icon: '<i class="fas fa-times error text-danger"></i>',
           };
     }
     return pontuacao;
@@ -103,15 +129,17 @@ const showRespostas = async () => {
     `;
     tbodyTabelaPontuacao.appendChild(tr);
   });
-  $(document).ready(() => {
-    $("#tabelaPontuacao").DataTable({
-      responsive: true,
-      fixedHeader: true,
-      language: {
-        url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json",
-      },
+  if (!initTabelaPontuacao)
+    $(document).ready(() => {
+      initTabelaPontuacao = true;
+      $("#tabelaPontuacao").DataTable({
+        responsive: true,
+        fixedHeader: true,
+        language: {
+          url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json",
+        },
+      });
     });
-  });
   document.querySelector(".c-loader").classList.add("hide");
   document.querySelector(".tabelaPontuacao").classList.remove("hide");
 };

@@ -2,18 +2,7 @@ const username = document.querySelector(".username");
 const saldo = document.querySelector(".saldo");
 const tbodyTabelaPontuacao = document.querySelector("#tabelaPontuacao tbody");
 let usuario = {};
-const generateQRCode = async (codePix) => {
-  const text = `Apelido: ${usuario.apelido}\n\rNome: ${usuario.nomeCompleto}\n\rEmail: ${usuario.email}`;
-  const qrcodeElement = document.querySelector(".qrcode");
-  const qrcode = new QRCode(qrcodeElement, {
-    text,
-    width: 275,
-    height: 275,
-    colorDark: "#000000",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H,
-  });
-};
+
 const copyPix = async () => {
   const codePix = document.getElementById("codePix");
   const codePixText = codePix.innerText;
@@ -30,19 +19,19 @@ const inserirCredito = (valor) => {
   loader.classList.add("hide");
   codePixContainer.addEventListener("click", copyPix);
   const codigoPixElement = document.getElementById("codePix");
+  const link = getLinkWhatsapp(usuario, valor);
+  window.open(link, "_blank");
+
   if (valor == 10) {
     codigoPixElement.innerHTML = `00020126580014BR.GOV.BCB.PIX013655f384af-8aa0-431a-9b56-7655ebc1919c520400005303986540510.005802BR5925MARCIO MARQUES DE SOUZA 06009SAO PAULO61080540900062250521z1qv6VVSa8bJmGZ12zebu6304D4BF`;
-    generateQRCode(codigoPixElement.innerHTML);
     return;
   }
   if (valor == 50) {
     codigoPixElement.innerHTML = `00020126580014BR.GOV.BCB.PIX013655f384af-8aa0-431a-9b56-7655ebc1919c520400005303986540550.005802BR5925MARCIOMARQUES DE SOUZA 06009SAO PAULO61080540900062250521og3gJmHjP0gXPJt12zebu630453B0`;
-    generateQRCode(codigoPixElement.innerHTML);
     return;
   }
   if (valor == 100) {
     codigoPixElement.innerHTML = `00020126580014BR.GOV.BCB.PIX013655f384af-8aa0-431a-9b56-7655ebc1919c5204000053039865406100.005802BR5925MARCIO MARQUES DE SOUZA 06009SAO PAULO61080540900062250521qkQ3BZmiaWqbnCj12zebu63047CA3`;
-    generateQRCode(codigoPixElement.innerHTML);
     return;
   }
 };

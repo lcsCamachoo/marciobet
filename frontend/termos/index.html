@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Página do Ranking</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables library -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"
+    />
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
+    ></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/api.js"></script>
+  </head>
+
+  <body>
+    <main>
+      <img class="bg" src="../assets/bg-bet-legal.jpg" alt="" />
+
+      <div class="container">
+        <div class="carrousselContainer">
+          <div class="w-100 align-items-center justify-content-center">
+            <div
+              id="carouselExampleIndicators"
+              class="carousel slide"
+              data-ride="carousel"
+            >
+              <ol class="carousel-indicators">
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="0"
+                  class="active"
+                ></li>
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="1"
+                ></li>
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="2"
+                ></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    class="d-block img-carrousel rounded w-100"
+                    src="../assets/carrousel1.jpg"
+                    alt="Primeiro Slide"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="d-block img-carrousel rounded w-100"
+                    src="../assets/carrousel2.jpg"
+                    alt="Segundo Slide"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="d-block img-carrousel rounded w-100"
+                    src="../assets/carrousel3.jpg"
+                    alt="Terceiro Slide"
+                  />
+                </div>
+              </div>
+              <a
+                class="carousel-control-prev"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Anterior</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Próximo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container infos">
+        <a type="button" href="/" class="btn play-btn">Jogar agora</a>
+
+        <div class="row">
+          <div class="col">
+            <div class="termosContainer">
+              <h1 class="title">Termos e Condições</h1>
+              <div class="termos bg-dark p-2">
+                <code class="text-light">
+                  1.1. Estes Termos e Condições ("Termos e Condições")
+                  aplicam-se ao uso por Você dos Jogos (conforme definido
+                  abaixo), a Internet habilitada relacionada, plataformas móveis
+                  ou outras através do site https://betlegal.online e outros
+                  URLs relacionados. 1.2. O Website e os Jogos são oferecidos
+                  pela MultiArt Soluções. 1.3. Esses T&C constituem um acordo
+                  vinculativo entre você e a Multiart Soluções. 1.4. Esses T&Cs
+                  entram em vigor assim que você clica no botão "ACEITAR". Ao
+                  fazer isso, você indica à Multiart Soluções que leu esses
+                  Termos e Condições e os aceita. Ao usar qualquer um dos
+                  serviços do site, você declara que concorda com esses termos e
+                  condições. 1.5.Você deve ler cuidadosamente estes T&C's antes
+                  de clicar no botão " CONCLUIR REGISTRO". Se você não concordar
+                  com qualquer disposição destes T&C's, não deverá usar ou
+                  continuar a usar o site. 1.6. Você entende e concorda em ficar
+                  vinculado aos termos e condições aqui contidos e que podem ser
+                  alterados por nós de tempos em tempos. 1.7 A Multiart Soluções
+                  reserva o direito de modificar esses Termos e Condições e,
+                  consequentemente, alterar este contrato a qualquer momento.
+                  1.8 No caso de os T&Cs serem alterados em detrimento dos seus
+                  direitos, a Multiart Soluções notificará você o mais cedo
+                  possível para revisar e aceitar as alterações. É de sua
+                  exclusiva responsabilidade revisar este Contrato, juntamente
+                  com as Regras específicas para cada Jogo em que você optar por
+                  participar, a fim de permanecer atualizado com todas as
+                  alterações sempre que jogar. 1.9 As regras e explicações para
+                  a participação em qualquer um dos jogos, a manutenção da sua
+                  conta e outras informações importantes são fornecidas em links
+                  separados no site e são incorporadas a esses T&Cs por
+                  referência. 1.10. Qualquer referência aos jogos neste contrato
+                  deve se referir ao quiz e quaisquer outros jogos que, de
+                  tempos em tempos, estejam disponíveis no site. A Multiart
+                  Soluções se reserva o direito de adicionar e remover jogos do
+                  site, a seu critério. 1.11 Esses Termos e Condições podem ser
+                  publicados em vários idiomas para fins de informação e
+                  facilidade de acesso por nossos clientes. No entanto, somente
+                  a versão em inglês servirá como base jurídica do contrato
+                  vinculativo entre Você e a Multiart Soluções e, no caso de
+                  qualquer disputa entre a versão em inglês dos Termos e
+                  Condições e versões em qualquer outro idioma, a versão em
+                  inglês sempre prevalecerá. 2. Regras de contas 2.1 Para
+                  participar de qualquer um dos Jogos com dinheiro real, você
+                  deve primeiro se registrar, abrir uma conta ("Conta de
+                  Usuário") e depositar dinheiro na Sua Conta de Usuário através
+                  do método de transferencia via PIX. A opção de login é
+                  oferecida apenas aos clientes registrados previamente na
+                  plataforma. O login através de suas plataformas deve ser feito
+                  usando seu email registrado nteriormente. Você pode sair a
+                  qualquer momento. 2.2 A aquisição de créditos e retirada de
+                  saldo pelo usuário, será sempre pelo método PIX, a Multiart
+                  Soluções receberá os valores para créditos do Usuário e fará
+                  os pagamentos de saldo para o Usuário pelas chaves PIX
+                  registrada no ato do registro pelo Usuário. A chave PIX
+                  registrada deve estar em nome do Usuário para aprovação do
+                  saque. 2.3 Os clientes podem abrir e usar apenas uma conta por
+                  email e chave PIX. Não é permitido abrir e / ou usar várias
+                  contas (além de quaisquer contas existentes, estejam elas
+                  ativas, inativas ou fechadas por qualquer motivo). Se tivermos
+                  suspeitas razoáveis de que algum de nossos clientes abriu e /
+                  ou usou várias contas conosco, reservamo-nos o direito, a
+                  nosso critério absoluto, de bloquear temporariamente a conta
+                  do cliente, bem como todas as várias contas e / ou fechar
+                  todas essas contas imediatamente. Todos os ganhos, bônus,
+                  apostas grátis e ganhos acumulados com esses bônus e apostas
+                  grátis obtidos com a criação e / ou o uso dessas múltiplas
+                  contas serão anulados. Os fundos mantidos em várias contas
+                  devem ser retidos, até o valor que cubra quaisquer saques
+                  ilegais feitos pelos clientes dessas várias contas. 2.4 Se
+                  você perceber que possui mais de uma conta com nomes
+                  diferentes, com mesmo email e mesma chave PIX, ESTÁ OBRIGADO a
+                  notificar a plataforma imediatamente. 2.5 Uma solicitação para
+                  abrir uma conta é feita preenchendo o formulário de registro e
+                  enviando-o para betlegal.online/register. A Multiart Soluções
+                  reserva o direito de se recusar a abrir ou fechar uma conta a
+                  seu exclusivo critério, tendo cumprido anteriormente todas as
+                  suas obrigações contratuais com o cliente. 2.6 Você deve
+                  inserir todas as informações obrigatórias solicitadas no seu
+                  formulário de registro. Em particular, Nome completo, chave
+                  PIX em seu nome, apelido que voce quer ser conhecido na sua
+                  conta, incluindo um endereço de e-mail válido, que devem ser
+                  verdadeiras e corretas. É de sua exclusiva responsabilidade
+                  garantir que as informações fornecidas por você sejam
+                  verdadeiras, completas e corretas, e você declara e garante
+                  que as informações fornecidas são verdadeiras, completas e
+                  corretas. Você é notificado de que a Multiart Soluções realiza
+                  procedimentos de verificação, por conta própria ou de
+                  terceiros, e sua conta pode ser bloqueada ou fechada, a
+                  atividade de apostas e todos os bônus serão anulados e os
+                  depósitos serão deduzidos, caso você tenha fornecido
+                  informações falsas ou enganosas. 2.7 Como parte do processo de
+                  registro, você terá que escolher seu nome de usuário e senha
+                  para o seu login no site. É de sua exclusiva responsabilidade
+                  garantir que seus detalhes de login sejam mantidos em
+                  segurança. Você nunca deve divulgar seus detalhes de login a
+                  ninguém. A Multiart Soluções não se responsabiliza por nenhum
+                  abuso ou uso indevido da Sua Conta por terceiros devido à sua
+                  divulgação, intencional ou acidental, ativa ou passiva, dos
+                  detalhes do Seu login a terceiros. 2.8 A Multiart Soluções
+                  reserva o direito de encerrar as contas existentes sem
+                  explicação. Nesse caso, ou no caso de um fechamento de conta
+                  por um cliente, o saldo total será pago, a menos que se
+                  suspeite de comportamento fraudulento. A Multiart Soluções
+                  também se reserva o direito de denunciá-lo às autoridades
+                  apropriadas, se algum cliente estiver envolvido em qualquer
+                  forma de suspeita de comportamento fraudulento. 2.9 É de sua
+                  responsabilidade proteger seu ID e senha de Usuário. Quaisquer
+                  ações executadas pelo uso dos seus dados de login são de seu
+                  próprio risco e qualquer responsabilidade disso será
+                  estritamente sua. 2.10 A conta do cliente é individual e o
+                  cliente é inteiramente responsável pelas obrigações
+                  correspondentes da conta, além de ter direito a todos os
+                  lucros e benefícios. 2.11 A Multiart Soluções reserva o
+                  direito de encerrar eventos e / ou jogos a qualquer momento.
+                  Nesse caso, todas as apostas pendentes nos eventos / jogos
+                  suspensos serão reembolsadas na conta do cliente em forma de
+                  créditos. 2.12 O Titular da conta não deve permitir que
+                  qualquer outro indivíduo, incluindo menor de idade, use ou
+                  reutilize sua conta, acesse e / ou use qualquer material ou
+                  informação do site, aceite qualquer prêmio ou acesse e / ou
+                  participe dos serviços. Caso tenhamos suspeitas razoáveis de
+                  que algum de nossos clientes tenha permitido que outra pessoa
+                  use ou reutilize sua conta, reservamo-nos o direito, a nosso
+                  critério absoluto, de bloquear temporariamente a conta do
+                  cliente imediatamente e / ou fechar a conta imediatamente.
+                  Todos os ganhos obtidos com a permissão de qualquer outro
+                  indivíduo para usar ou reutilizar sua conta serão anulados.
+                  2.13 Se descobrirmos que a conta de um cliente é mantida ou
+                  gerenciada por um menor (uma pessoa com menos de 18 anos), a
+                  conta correspondente será imediatamente encerrada, todas as
+                  apostas serão consideradas nulas e sem efeito e todos os
+                  depósitos serão reembolsados. 3. Depositar na sua conta 3.1
+                  3.2 Se você deseja participar de qualquer jogo, terá que fazer
+                  um depósito em sua conta de uma conta ou fonte da qual você é
+                  o titular da conta. Seu dinheiro poderá então ser usado por
+                  você para realizar apostas e outras transações de jogos e
+                  apostas. Você pode participar de qualquer jogo apenas se tiver
+                  fundos suficientes em sua conta Kaizen para essa participação.
+                  A Multiart Soluções não concederá a você nenhum crédito por
+                  sua participação em qualquer jogo. Para evitar qualquer
+                  mal-entendido, queremos deixar claro que Sua conta não pode
+                  ser usada por você como uma conta bancária e se o Kaizen tomar
+                  conhecimento de depósitos e saques de sua conta sem apostas
+                  proporcionais ou qualquer outra atividade de jogo,
+                  reservamo-nos o direito deduzir uma taxa de administração
+                  (independentemente de sua conta ser encerrada ou suspensa).
+                  3.3 Toda a informação necessária para efetuar depósitos na sua
+                  Conta pode ser encontrada nas páginas "REGRAS". Você pode usar
+                  qualquer um dos métodos disponíveis conforme especificado
+                  nestas páginas que podem ser alvo de alterações
+                  periodicamente. 3.4 Só aceitamos pagamentos na moeda
+                  Brasileira, ou seja Real BR. Quaisquer pagamentos recebidos em
+                  qualquer outra moeda que não seja Real BR serão convertidos na
+                  moeda da sua conta à taxa de câmbio em vigor. Observe que
+                  qualquer taxa de câmbio é paga por você. 3.5 Ao usar um cartão
+                  de crédito ou débito para depositar fundos, seus fundos
+                  somente serão liberados quando tivermos recebido um código de
+                  aprovação e autorização. Se não recebermos essa autorização,
+                  sua conta não será creditada com esses fundos. 3.6 A Multiart
+                  Soluções cumpre as disposições da legislação contra lavagem de
+                  dinheiro e financiamento antiterrorista e reserva-se o direito
+                  de usar procedimentos e meios adicionais para verificar sua
+                  identidade ao efetuar depósitos em sua conta ou efetuar seus
+                  saques. 3.7 A Multiart Soluções não concede nenhum crédito
+                  pelo uso de seus serviços. 3.8 Os saldos de crédito em sua
+                  conta não geram juros e você não pode considerar a Multiart
+                  Soluções como uma instituição financeira. Se tivermos
+                  suspeitas razoáveis de que os fundos são depositados sem um
+                  objetivo estrito de estabelecer um relacionamento comercial
+                  normal e sem a estrita intenção de realizar apostas e outras
+                  transações de jogos e apostas ou que os fundos são depositados
+                  como uma tentativa de exceder os limites diários de depósito,
+                  A Multiart Soluções se reserva o direito de não creditar na
+                  conta do cliente e / ou cancelar as transações com os fundos
+                  devolvidos ao cliente. Em todos os casos, a Multiart Soluções
+                  não pode ser responsabilizada por esses fundos e não assume
+                  nenhuma responsabilidade contra o cliente. 3.9 Os fundos
+                  depositados em sua conta devem ser usados para transações de
+                  boa-fé, com o objetivo estrito de estabelecer um
+                  relacionamento comercial normal e com o objetivo e a intenção
+                  estritos de realizar apostas e outras transações de jogos e
+                  apostas. 3.10 Dependendo da forma de pagamento escolhida pelo
+                  Titular da conta, podem ser aplicados limites mínimos e / ou
+                  máximos de depósito. 3.11 De vez em quando, os depósitos em
+                  cartão podem ser parcialmente e / ou totalmente recusados,
+                  sujeitos a certos sistemas de segurança gerenciados em
+                  colaboração com um Fornecedor de soluções de pagamento e / ou
+                  uma instituição financeira. Tais medidas de segurança podem
+                  recusar cartões legítimos, fazendo com que não seja possível
+                  processar em um determinado momento. O pessoal da Multiart
+                  Soluções não controla ou influencia esses mecanismos de
+                  segurança, nem tem conhecimento dos motivos pelos quais os
+                  depósitos foram recusados. 3.12 Se você usar um método de
+                  pagamento em relação ao qual não é o titular da conta e / ou
+                  utilizar fundos que não lhe pertencem, incluindo o uso de um
+                  método de pagamento roubado, clonado ou não autorizado,
+                  reservamos o direito de tratar qualquer depósito na Conta como
+                  inválido (e quaisquer ganhos resultantes desse depósito como
+                  nulos). 4. Saques da sua conta 4.1 O saque dos creditos deve
+                  ser solicitado no site na conta do usuário e aguardar até 72 h
+                  para processamento e pagamento na chave PIX registrada em nome
+                  do usuário. 4.2 Você pode sacar qualquer quantia (em alguns
+                  países, você pode sacar apenas valores inteiros) até o saldo
+                  em Sua conta Kaizen, informando Kaizen com um aviso válido de
+                  retirada no site 4.3 Os avisos para saques devem ser feitos
+                  através do site. A Kaizen não aceita pedidos de saques feitos
+                  por telefone ou por email. Os funcionários da Kaizen não podem
+                  ignorar estas instruções. 4.4 A Multiart Soluções oferece uma
+                  ampla variedade de métodos de saque. Quaisquer ganhos acima do
+                  nível indicado acima podem ser sacados através do método
+                  escolhido por você para depósito. Além disso, seu próprio
+                  banco pode cobrar uma taxa adicional pela transação. Essas
+                  cobranças podem variar ao longo do tempo. 4.5 A Multiart
+                  Soluções tentará acomodar sua solicitação em relação ao método
+                  de pagamento do seu saque. Isso, no entanto, não pode ser
+                  garantido. Portanto, podemos processar e pagar saques com um
+                  método de pagamento diferente daquele solicitado por você e /
+                  ou cancelar qualquer solicitação de saque pendente. 4.6 A
+                  Multiart Soluções pode solicitar uma identificação legal como
+                  passaporte, carteira de identidade nacional ou qualquer outro
+                  tipo de identificação que considere adequado para todos os
+                  saques. Para saques em que houve depósitos anteriores com
+                  cartão de crédito, a Multiart Soluções pode solicitar cópias
+                  do cartão de crédito (frente e no verso do cartão). A Kaizen
+                  recomenda que você deixe apenas os 6 primeiros dígitos e os 4
+                  últimos dígitos do cartão visíveis. Isto é para sua própria
+                  proteção. Cubra também o número CVV / CVV2 na parte de trás do
+                  cartão. 4.7 A Multiart Soluções pode solicitar a verificação
+                  do endereço solicitando cópias de contas de serviços públicos,
+                  extratos bancários ou qualquer outro documento que considere
+                  adequado. A Multiart Soluções reportará às autoridades
+                  relevantes quaisquer transações suspeitas. Se essas cópias não
+                  forem recebidas dentro de um prazo razoável a partir da data
+                  em que foram solicitadas, a Multiart Soluções reserva o
+                  direito de cancelar qualquer solicitação de saque pendente e /
+                  ou bloquear temporariamente sua conta. 4.8 Se o valor de um
+                  depósito não for jogado completamente antes que um saque seja
+                  solicitado, a Multiart Soluções reserva-se o direito de fazer
+                  uma cobrança na conta do cliente para cobrir todos os custos
+                  razoáveis relacionados ao depósito e ao saque. Se necessário,
+                  o valor do saque solicitado pode ser reduzido em conformidade.
+                  A Kaizen também pode solicitar documentos de identificação
+                  adicionais para todos os saques e realizar uma diligência
+                  devida aprimorada em relação aos saques de fundos não
+                  utilizados para apostas. 4.9 Se o método de depósito da conta
+                  for um Vale Pré-Pago (por exemplo, Paysafecard) e o valor de
+                  um depósito não for jogado completamente antes da solicitação
+                  de um saque, ou caso existam provas de uma série de apostas
+                  realizadas que resultem em lucros garantidos dos clientes,
+                  independentemente do resultado, ou onde todas as apostas são
+                  determinadas como de baixo risco, a Kaizen reserva-se o
+                  direito de solicitar um recibo que comprove a compra do vale
+                  e/ou os vales exatos utilizados para depósitos antes do
+                  processamento de qualquer saque.Além disso, no caso de
+                  suspeita de atividade inadequada, a Kaizen reserva-se o
+                  direito de recusar um pedido de saque, a menos que um cliente
+                  tenha jogado o valor do depósito original pelo menos cinco
+                  vezes e com odds superiores a 1.50. 4.10 A Multiart Soluções
+                  reserva-se o direito de reter fundos de saques, se esses
+                  fundos não forem utilizados para a realização de apostas e
+                  outras transações de jogos e apostas. 4.11 Quando é utilizado
+                  mais do que um método de pagamento, reservamos o direito de
+                  garantir que os pagamentos são feitos de acordo com as regras
+                  projetadas para minimizar a possibilidade de fraude. Isto pode
+                  incluir pagamentos parciais aos tipos de depósito
+                  anteriormente utilizados, conforme aplicável. 4.12 A Multiart
+                  Soluções reserva-se no direito de aceitar Depósitos e Saques
+                  utilizando valores inteiros quando o contrário não for
+                  possível. 5. Pagamentos de Jogos 5.1 Quando o resultado de um
+                  jogo do qual você participa é determinado ou, quando
+                  aplicável, a Multiart Soluções confirma o resultado relevante
+                  de um evento e liquida os mercados, todos os ganhos serão
+                  creditados em sua conta de Usuário como creditos na página,
+                  podendo ser solicitado o saque. 5.2.1 Se a Multiart Soluções
+                  creditar erroneamente na sua conta ganhos que não lhe
+                  pertençam, seja devido a um erro nas tabelas de pagamento
+                  publicadas, no software do jogo ou erro humano, o valor
+                  continua a permanecer propriedade da Multiart Soluções e será
+                  transferido da sua conta. Se antes de a Multiart Soluções dar
+                  conta do erro, um pedido de saque já tiver sido concluído com
+                  fundos que não lhe pertencem, o valor pago por engano irá
+                  constituir uma dívida devida por você à Kaizen. No caso de um
+                  crédito incorreto, os esforços automatizados são feitos pela
+                  empresa fornecedora do pagamento para recuperar esse crédito
+                  com uma cobrança na sua respectiva conta e o jogador também é
+                  obrigado a notificar a Multiart Soluções imediatamente por
+                  e-mail. 5.2.2 A Multiart Soluções reserva o direito de anular
+                  qualquer aposta, quando a conta não tiver fundos suficientes
+                  para cobrir a aposta e / ou qualquer aposta que tenha sido
+                  feita com ganhos creditados por engano devido a um erro
+                  técnico ou humano. Caso a rodada permaneça aberta e nenhuma
+                  ação for iniciada pelo usuário, a Multiart Soluções fechará
+                  automaticamente essas rodadas após 30 dias sem devolver a
+                  aposta. 5.3 A Multiart Soluções executará procedimentos de
+                  verificação adicionais para qualquer transação ou transações e
+                  se reserva o direito de executar esses procedimentos de
+                  verificação mesmo no caso de pagamentos mais baixos. Todas as
+                  transações serão verificadas para evitar lavagem de dinheiro.
+                  6. Fechar a sua conta 6.1 Se você não acessar sua conta pela
+                  Internet, usando seu "nome de usuário" e "senha" por um
+                  período de trinta (30) meses, a Multiart Soluções enviará os
+                  saldos em sua conta para você se você puder ser localizado.
+                  6.2 A Multiart Soluções se reserva o direito de reter e
+                  remover todos os bônus concedidos a você, se esses bônus não
+                  tiverem sido usados dentro de 6 meses a partir da data em que
+                  foram concedidos. 6.3 Se a sua conta não for acessada por 12
+                  meses e tiver um saldo em dinheiro real, será considerada
+                  inativa. Trinta dias antes de a sua conta ser considerada
+                  inativa, a Multiart Soluções entrará em contato com você para
+                  resgatar o seu saldo antes de a conta ficar inativa. Se, 12
+                  meses após o seu último login, sua conta retiver um saldo
+                  positivo, a Multiart Soluções aplicará uma taxa administrativa
+                  mensal de R$5 ou seu equivalente em qualquer outra moeda, até
+                  que o saldo da sua conta seja reduzido a zero. Observe que
+                  essa cobrança administrativa só pode ser imposta à sua conta
+                  em nosso site e, sob nenhuma circunstância, pode ser aplicada
+                  a qualquer uma das suas contas bancárias associadas. Você pode
+                  fazer login na sua conta a qualquer momento, para reativá-la
+                  ou para sacar seu saldo restante, para que nenhuma das taxas
+                  administrativas acima seja cobrada. 6.4. Nenhuma taxa
+                  administrativa mensal será aplicada se a conta estiver
+                  atualmente auto-excluída. Depois que o período de autoexclusão
+                  for suspenso, o período de não atividade começará a contar. 7.
+                  As suas obrigações como cliente 7.1 Você declara e garante
+                  que: 7.1.1 Tem 18 ou mais anos de idade ou idade superior
+                  mínima à idade legal, de acordo com as leis aplicáveis, e que
+                  pode participar nos Jogos disponibilizados no site. 7.1.2 Você
+                  é uma pessoa física. Você não pode ser uma empresa ou outra
+                  entidade legal. Você participa nos Jogos estritamente de forma
+                  pessoal e não profissional e apenas para fins recreativos e de
+                  entretenimento; 7.1.3 Participa nos Jogos em seu nome e não em
+                  nome de qualquer outra pessoa; 7.1.4 Todas as informações
+                  fornecidas por você, durante o prazo de validade deste
+                  contrato são verdadeiras, completas e corretas, e que você
+                  deve notificar imediatamente a Multiart Soluções de qualquer
+                  alteração dessas informações; 7.1.5 Você é o único responsável
+                  por comunicar e contabilizar os impostos que lhe são
+                  aplicáveis, de acordo com as leis relevantes para quaisquer
+                  ganhos que receba na plataforma; 7.1.5 Todo o dinheiro que
+                  você deposita em sua conta não está contaminado por nenhuma
+                  ilegalidade e, em particular, não se origina de nenhuma
+                  atividade ou fonte ilegal; você entende que é ilegal depositar
+                  dinheiro de meios ilícitos. 7.1.7 Você entende que,
+                  participando nos Jogos, corre o risco de perder o dinheiro
+                  depositado na sua conta; 7.1.8 Você não deve se envolver em
+                  nenhuma atividade fraudulenta, colusiva, de manipulação ou
+                  outra atividade ilegal em relação à participação Sua ou de
+                  terceiros em qualquer um dos Jogos e não deve usar métodos
+                  assistidos por softwares ou técnicas ou dispositivos de
+                  hardware para sua participação em quaisquer um dos jogos. A
+                  Multiart Soluções reserva-se o direito de invalidar ou
+                  encerrar sua conta ou invalidar sua participação em um jogo no
+                  evento de tal comportamento; 7.1.9 Em relação a depósitos e
+                  saques de fundos para e de sua conta, você deve usar apenas
+                  cartão de crédito e outros instrumentos financeiros válidos e
+                  que legalmente pertençam a você. Você também concorda em não
+                  fazer devoluções (“charge-back”), PIX agendado, reversões ou,
+                  de outra forma, cancelar quaisquer depósitos em Sua Conta e,
+                  na ocorrência de qualquer destes casos, nos reembolsar e
+                  compensar tais depósitos não pagos, incluindo quaisquer
+                  despesas incorridas por nós no processo de coleta de seu
+                  depósito. 7.1.10 O software de computador que disponibilizamos
+                  para uso dos nossos serviços é propriedade da Multiart
+                  Soluções ou de terceiros e protegido por direitos de autor e
+                  outras leis de propriedade intelectual. Você só pode utilizar
+                  o software para seu próprio uso pessoal e recreativo de acordo
+                  com todas as regras, termos e condições por este meio
+                  estabelecidos e de acordo com todas as leis, regras e
+                  regulamentos aplicáveis. 7.1.11 Os jogos disponibilizados no
+                  site devem ser jogados da mesma forma que os jogos jogados em
+                  qualquer outra instalação. Isto significa que nossos clientes
+                  devem ser cordiais entre si e evitar comentários grosseiros,
+                  de teor racista ou xenófobo, bem como de caráter sexual ou
+                  obsceno. 7.1.12 Você deve imprimir todas as transações e
+                  cupons de apostas juntamente com todos esses Termos e
+                  Condições e quaisquer outras regras para os jogos
+                  disponibilizados no site. Estes devem ser preservados num
+                  local facilmente acessível. 7.1.13 É sua responsabilidade
+                  saber se o jogo on-line é legal no seu país. 7.1.14 Você não
+                  tem permissão para transferir fundos da sua conta de cliente
+                  para outros clientes ou para receber dinheiro de outros
+                  clientes na sua conta, ou para transferir, vender e/ou
+                  adquirir contas de usuário. 7.1.15 Você não é um jogador
+                  profissional em nenhum esporte, competição ou liga em que a
+                  Multiart Soluções oferece apostas; 7.1.16 Você não é
+                  classificado como jogador compulsivo problemático e / ou é
+                  incluído (voluntária ou involuntariamente) em qualquer
+                  registro ou banco de dados de jogadores excluídos; 7.1.17 Você
+                  ainda não teve uma conta encerrada por nós ou a seu pedido 8.
+                  Jogar de forma responsável 8.1 Você pode, a seu critério,
+                  optar por restringir o acesso à sua conta e / ou excluir-se de
+                  jogar qualquer jogo no site, temporária ou permanentemente.
+                  Para restringir seu acesso aos jogos ou se autoexcluir
+                  automaticamente, você deve visitar a seção relevante em sua
+                  conta ou enviar um e-mail para o suporte ao cliente. As
+                  solicitações de bloqueio de conta e auto-exclusão entram em
+                  vigor imediatamente. Para revogar uma restrição da sua conta,
+                  entre em contato com o Suporte ao cliente. Para solicitações
+                  de revogação de auto-exclusão, diferentes períodos de tempo
+                  são aplicados, dependendo do tipo de auto-exclusão que você
+                  escolheu aplicar. 8.2 Você também pode, a seu critério, optar
+                  por definir limites para sua conta, visitando a seção
+                  relevante em sua conta ou entrando em contato com o
+                  Atendimento ao cliente. Esses limites se referem a (i) a
+                  quantidade de dinheiro que você pode perder em um determinado
+                  período de tempo, (ii) a quantidade de dinheiro que você pode
+                  depositar em sua conta em um determinado período de tempo e
+                  (iii) a quantidade de tempo em que você pode jogar em uma
+                  sessão. Os pedidos de configuração de limites entram em vigor
+                  imediatamente. Para revogar um limite da sua conta, entre em
+                  contato com o Atendimento ao cliente. Para sua proteção, é
+                  possível que a revogação desses limites entre em vigor sete
+                  dias após o recebimento de sua solicitação, desde que o
+                  período escolhido por você tenha sido concluído. 8.3 Se a
+                  Multiart Soluções acreditar que as apostas de um cliente lhes
+                  causam dificuldades financeiras ou pessoais, a Multiart
+                  Soluções se reserva o direito de encerrar sua conta. Regras de
+                  jogo responsável; as seguintes regras devem ser rigorosamente
+                  observadas ao jogar: Faça pausas regulares nos seus jogos.
+                  Determine o seu limite diário e mensal de apostas com
+                  antecedência. Lembre-se: o jogo é uma forma de entretenimento,
+                  não um meio legítimo de ganhar dinheiro. Decida previamente o
+                  nível máximo das perdas que pode suportar. Não jogue sob a
+                  influência de álcool ou medicamentos, se estiver sob depressão
+                  ou quando não estiver totalmente descansado e com uma boa
+                  capacidade de concentração. 9. Apostas esportivas 9.1 Uma
+                  aposta só pode ser feita por um cliente registrado. 9.2 Uma
+                  aposta só pode ser realizada pela Internet. 9.3 Uma aposta só
+                  pode ser realizada por um cliente se ele tiver fundos
+                  suficientes na sua conta. 9.4 A aposta, uma vez concluida,
+                  será regida pela versão dos Termos e Condições válidos no
+                  momento de aceitação da aposta. 9.5 Considera-se que uma
+                  aposta foi feita assim que a confirmação da aceitação da
+                  oferta de apostas for recebida. Quando várias apostas são
+                  feitas pelo cliente, elas serão processadas na ordem em que
+                  são recebidas. 9.6 O cliente afirma que, no momento em que fez
+                  uma aposta ou apostas, não tinha conhecimento do resultado dos
+                  respectivos eventos. Não são permitidas apostas em eventos em
+                  que o cliente esteja diretamente envolvido ou tenha acesso a
+                  informações privilegiadas. Onde houver suspeita de violação
+                  desta regra, a Multiart Soluções se reserva o direito de
+                  anular a aposta e se recusar a pagar os ganhos. Ela também se
+                  reserva o direito de tomar qualquer outra ação para proteger
+                  seus interesses legítimos e cumprir outras leis e
+                  regulamentos. 9.7 A Multiart Soluções reserva-se o direito de
+                  recusar aceitar apostas sem fornecer qualquer motivo. 9.8 O
+                  valor único por aposta é de R$5,00. 9.9 A lista de todas as
+                  apostas, seu status e detalhes está disponível para o cliente
+                  no site. 9.10 A Multiart Soluções reserva o direito de
+                  declarar todas as apostas em um evento ou eventos inválidas se
+                  elas emanarem de um grupo de clientes que parecem ter
+                  conhecimento do resultado de tais eventos e agiram juntos para
+                  tirar proveito de tais conhecimentos, por ex: sindicatos de
+                  apostas. 9.11 Quando uma aposta é declarada inválida ou nula,
+                  o cliente receberá de volta o valor colocado na aposta. 9.12
+                  qualquer aposta concluída após o início do evento se torna
+                  inválida; 9.13 Caso a Multiart Soluções decida fechar a conta
+                  de um cliente, as apostas que já foram feitas e aceitas não
+                  serão anuladas e o cliente receberá quaisquer ganhos, a menos
+                  que haja suspeita de comportamento fraudulento. A Multiart
+                  Soluções também reserva o direito de relatar às autoridades
+                  apropriadas, se algum de nossos clientes estiver envolvido em
+                  qualquer forma de suspeita de comportamento fraudulento. 9.14
+                  Uma aposta que tenha sido feita e aceita não pode ser
+                  alterada, retirada ou cancelada, a menos que se suspeite de
+                  comportamento fraudulento. A Multiart Soluções também reserva
+                  o direito de relatar às autoridades apropriadas, se algum
+                  cliente estiver envolvido em qualquer forma de suspeita de
+                  comportamento fraudulento. 9.15 Um erro em relação aos
+                  detalhes de uma aposta ou apostas não influenciará a validade
+                  da aposta. Se o evento em que a aposta foi feita estiver
+                  incorreto, isso anulará automaticamente a aposta. 9.16 Quando
+                  o cliente faz uma aposta, é reconhecido que todos os termos e
+                  condições e regras do jogo referentes às apostas oferecidas,
+                  conforme declaradas no site, foram lidos, compreendidos e
+                  aceitos na íntegra. 9.17 A Multiart Soluções gerencia as
+                  contas dos clientes e calcula os fundos disponíveis, os fundos
+                  pendentes, os fundos de apostas e o valor dos ganhos. Salvo
+                  indicação em contrário, esses valores são considerados finais
+                  e não estão sujeitos a nenhuma disputa. 9.18 Os clientes são
+                  totalmente responsáveis pelas ordens de apostas feitas. A
+                  Multiart Soluções nunca questionará os clientes sobre a
+                  relevância das apostas que eles desejam fazer e não será
+                  responsabilizada por possíveis erros que poderiam ter sido
+                  cometidos durante a realização dessas apostas, incluindo erros
+                  em relação aos valores apostados. 9.19 Os ganhos serão sempre
+                  por maior pontuação, em caso de empates entre os maiores
+                  pontuadores, o premio anunciado será rateado entre esses. 9.20
+                  Os ganhos serão pagos na conta dos clientes após a confirmação
+                  do resultado final do último jogo da rodada. Qualquer
+                  alteração posterior ao resultado, ex.: procedimentos
+                  disciplinares (doping) ou intervenção de órgãos dirigentes não
+                  influenciam o resultado. No entanto, a Kaizen reserva-se o
+                  direito de anular quaisquer ganhos, caso haja investigações
+                  sobre um evento como resultado de uma suspeita de atividades
+                  criminosas que possam ter afetado o resultado do evento. Se a
+                  irregularidade for confirmada, a Kaizen reserva-se o direito
+                  de anular quaisquer apostas relacionadas. 9.21 Apostas nulas.
+                  Uma aposta é considerada nula se um evento for cancelado ou
+                  abandonado e nenhum resultado final for declarado no mesmo dia
+                  em que a partida estava programada para ocorrer. Nesses casos,
+                  os outros jogos da rodada permanecerão valendo 1 ponto cada um
+                  e 0 ponto para o jogo anulado por qualquer razão. 10.2 Jogos
+                  interrompidos e abortados 10.2.1 A Multiart Soluções não se
+                  responsabiliza por qualquer tempo de inatividade, interrupções
+                  do servidor, atrasos ou qualquer distúrbio técnico ou político
+                  ao jogo. Os reembolsos podem ser feitos somente a critério da
+                  administração. 10.2.2 A Multiart Soluções não aceita qualquer
+                  responsabilidade por quaisquer danos ou perdas que se
+                  considerem ou se aleguem ter surgido relativamente ao site ou
+                  ao respectivos conteúdo incluindo, mas não limitado a, atrasos
+                  ou interrupções na operação ou transmissão, perda ou corrupção
+                  de dados, falhas de comunicação ou linhas, utilização indevida
+                  de qualquer pessoa do site ou do respectivo conteúdo ou
+                  quaisquer erros ou omissões no conteúdo. 11. Política de
+                  Privacidade 11.1 Você pode ler nossa Política de Privacidade
+                  aqui, que explica as nossas práticas e políticas relativas à
+                  coleta, uso e troca de informações e cookies coletados de você
+                  ou em seu nome. Nossa Política de Privacidade é parte
+                  integrante do contrato entre a Kaizen e o Titular da conta. Ao
+                  aceitar os Termos e Condições da Kaizen, o Titular da conta
+                  confirma e aceita que tomou conhecimento da Política de
+                  Privacidade, entendimentos e concordâncias com os
+                  procedimentos e práticas nele descritos. 12. Outros 12.1
+                  Reclamações 12.1.1 Se você tiver uma disputa, poderá enviar um
+                  e-mail para o Suporte ao cliente no site. A disputa é
+                  considerada um desacordo que você possa ter relacionado ao seu
+                  jogo, depósitos, saques e outros assuntos semelhantes. 12.1.2
+                  A Multiart Soluções envidará todos os esforços para resolver
+                  uma disputa imediatamente. De qualquer forma, a Multiart
+                  Soluções fornecerá os resultados dentro de 10 dias a partir da
+                  data da sua consulta e também informará se alguma extensão
+                  desse período pode ser necessária. 12.2 Limitação de
+                  responsabilidade 12.2.1 Você entra no site e participa dos
+                  Jogos por sua conta e risco. Os sites e os jogos são
+                  fornecidos sem qualquer garantia, expressa ou implícita. Sem
+                  prejuízo da generalidade da disposição anterior, a Multiart
+                  Soluções, seus diretores, funcionários, parceiros, prestadores
+                  de serviços: A) Não garante que o software ou o site seja
+                  adequado à sua finalidade; B) Não garante que o software e o
+                  site estejam livres de erros; C) Não garante que os sites e /
+                  ou jogos estejam acessíveis sem interrupções; D) D) Não serão
+                  responsáveis por quaisquer perdas, custos, despesas ou danos,
+                  diretos, indiretos, especiais, consequenciais, incidentais ou
+                  outros, decorrentes do seu uso dos sites ou da sua
+                  participação nos Jogos. 12.2.2 Onde a Multiart Soluções
+                  apresenta sugestões para a atividade de apostas, elas são
+                  baseadas em dados estatísticos recebidos de terceiros, sem que
+                  esteja em posição de garantir sua precisão. Essas sugestões
+                  são indicativas, embora, em qualquer caso, não devam ser
+                  consideradas, em circunstância alguma, como conselhos /
+                  recomendações e / ou como garantia de lucro. 12.2.3 Você
+                  concorda em indenizar totalmente e isentar a Multiart
+                  Soluções, seus diretores, funcionários, parceiros e
+                  prestadores de serviços de qualquer custo, despesa, perda,
+                  danos, reclamações e responsabilidades de qualquer forma
+                  causados que possam surgir em relação ao Seu uso do Site ou
+                  participação nos jogos. 12.2.4 Qualquer informação fornecida
+                  pelos agentes do Atendimento ao Cliente é apenas um guia e
+                  está sujeita às Regras mencionadas acima. Embora envidemos
+                  todos os esforços para garantir que as informações fornecidas
+                  ao cliente estejam corretas, é responsabilidade do cliente
+                  garantir que ele entenda o que está apostando e os termos e
+                  condições. 12.2.5 A Multiart Soluções reserva o direito de
+                  suspender temporariamente a sua Conta, até que o procedimento
+                  de verificação do cliente seja concluído na sua Conta. Para
+                  que esta verificação seja concluída, você terá que fornecer
+                  toda a documentação necessária a Kaizen, como previsto na
+                  legislação aplicável. 12.3 Relatórios contra lavagem de
+                  dinheiro e financiamento antiterrorista 12.3.1 A Multiart
+                  Soluções cumpre as disposições da legislação contra lavagem de
+                  dinheiro e financiamento antiterrorista e deve relatar
+                  qualquer transação suspeita às autoridades competentes
+                  relevantes. 12.3.2 Se você tomar conhecimento de qualquer
+                  atividade suspeita relacionada com qualquer um dos Jogos do
+                  site, você deve denunciar tal situação imediatamente em nossos
+                  canais de atendimento. 12.3.3 A Kaizen pode suspender,
+                  bloquear ou fechar sua conta Kaizen, se solicitada a fazê-lo,
+                  de acordo com as disposições relevantes da legislação contra
+                  lavagem de dinheiro e financiamento antiterrorista. De acordo
+                  com as disposições da legislação contra lavagem de dinheiro e
+                  financiamento antiterrorista, você garante que: a. O nome e o
+                  endereço que fornece ao abrir a sua conta estão corretos; e
+                  você é obrigado a atualizar no caso de qualquer alteração em
+                  suas informações ou status pessoais. b. Você é o proprietário
+                  legítimo do dinheiro que, em qualquer momento, deposita na sua
+                  Conta. 12.4 Violações, penalidades e rescisão 12.4.1 Se você
+                  violar qualquer disposição destes T&C ou tivermos uma base
+                  razoável para suspeitar que você os violou, a Multiart
+                  Soluções reserva-se o direito de não abrir, suspender, fechar
+                  sua conta Kaizen, reter o pagamento de seus ganhos e aplicar
+                  esses fundos por conta de quaisquer danos devidos por você.
+                  12.4.2 Se a Multiart Soluções suspeitar que você está
+                  envolvido em atividades ilegais ou fraudulentas ao usar o
+                  site; ou em violação deste Contrato; ou que você está tendo
+                  problemas com credores ou prejudiciais aos nossos negócios,
+                  nós podemos congelar ou encerrar a sua conta ou cancelar
+                  quaisquer valores apostados a nosso critério absoluto. 12.4.3
+                  A Multiart Soluções reserva-se o direito de fechar uma conta
+                  de cliente, recusar ou anular apostas, recusar-se a conceder
+                  um bônus ou promoção ou excluir um cliente de bônus,
+                  recompensas ou promoções em que o cliente em questão tenha
+                  sido abusivo ou ameaçador em suas comunicações com a equipe de
+                  atendimento ao cliente. 12.4.4 A Multiart Soluções reserva-se
+                  o direito de, a qualquer momento (inclusive após a
+                  determinação de uma aposta), (i) recusar qualquer aposta ou
+                  parte de uma aposta; ou (ii) anular qualquer aposta ou parte
+                  de uma aposta em que conclua, a seu exclusivo critério, que
+                  haja conluio entre contas de clientes e / ou clientes. Nesse
+                  caso, as apostas pendentes não sujeitas a recusa ou serem
+                  anuladas serão honradas. Além disso, a Multiart Soluções
+                  também reserva-se o direito de intentar uma ação legal contra
+                  clientes e / ou clientes quando uma autoridade reguladora
+                  constatar que houve conluio. 12.4.5 A Multiart Soluções
+                  reserva-se o direito de anular uma ou todas as apostas feitas
+                  por qualquer grupo de pessoas que atue em contato na tentativa
+                  de fraudar as apostas. Isso pode incluir pessoas, parentes,
+                  organizações, Casas de apostas e seus funcionários. 12.4.6
+                  Você reconhece que a Multiart Soluções deve tomar as decisões
+                  finais sobre se você violou as regras, termos ou condições de
+                  maneira a resultar na suspensão do usuário ou impedimento
+                  permanente da participação em nosso site. 12.4.7 Este Contrato
+                  constitui o contrato completo entre Você e a Multiart Soluções
+                  com relação a este Site e, salvo em caso de fraude, ele
+                  substitui todas as comunicações e propostas anteriores ou
+                  contemporâneas, eletrônicas, orais ou escritas, entre Você e a
+                  Multiart Soluções em relação a este Site. 12.4.8 Uma versão
+                  impressa deste contrato e de qualquer notificação enviada em
+                  formato eletrônico será admissível em processos judiciais ou
+                  administrativos baseados ou relacionados a este contrato na
+                  mesma extensão e sujeitos às mesmas condições que outros
+                  documentos e registros comerciais originalmente gerados e
+                  mantidos em formulário impresso. 13. Lei e jurisdição
+                  aplicável Esses Termos e Condições são regidos pelas Leis de
+                  Malta e as partes se submetem à jurisdição dos tribunais de
+                  Malta e / ou às regras de arbitragem de acordo com a Lei de
+                  Arbitragem de Malta, administrada pelo Centro de Arbitragem de
+                  Malta.
+                </code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+
+  <script src="index.js"></script>
+</html>

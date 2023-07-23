@@ -9,7 +9,9 @@ form.addEventListener("submit", async (event) => {
       alert("Login realizado com sucesso!");
       document.cookie = `token-bet=${res.data.token}; path=/`;
       document.cookie = `id-user=${res.data.usuario.id}; path=/`;
-      window.location.href = "/";
+      res.data.usuario.role === "ADMIN"
+        ? (window.location.href = "/admin")
+        : (window.location.href = "/");
     } else {
       throw new Error(res.data.message);
     }

@@ -23,25 +23,24 @@ const verificaLogin = () => {
 };
 
 const getUser = async () => {
-  verificaLogin();
   const { idFormatado: id } = getIdUserCookie();
   const urlRender = "https://bet-marcio.onrender.com";
   const urlDev = "http://localhost:3777";
   const res = await fetch(`${urlRender}/usuario/buscar/` + id);
   const resJson = await res.json();
-  console.log(resJson);
   const { usuario } = resJson;
+  console.log(resJson);
   return usuario;
 };
 
 const verificaRole = (usuario) => {
   if (!usuario) return false;
-  const isAdm = usuario.role === "ADMIN";
-
+  const isAdm = usuario.role == "ADMIN";
   return isAdm;
 };
 
 const validacaoInicial = async () => {
+  verificaLogin();
   const usuario = await getUser();
   const idAdm = verificaRole(usuario);
   if (!idAdm) {

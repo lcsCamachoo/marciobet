@@ -127,8 +127,15 @@
           <div class="custom-loader"></div>
         </div>
         <div class="tabelaPontuacao hide">
-          <h3>Painel das pontuações</h3>
-          <h3>Rodada Atual</h3>
+          <h3>Ranking</h3>
+          <div class="selectRodada pt-4 pb-4">
+            <label for="rodada">Selecione a rodada:</label>
+            <select
+              class="form-control form-select"
+              name="rodada"
+              id="selectRodada"
+            ></select>
+          </div>
           <table data-order='[[ 11, "asc" ]]' id="tabelaPontuacao">
             <thead>
               <tr>

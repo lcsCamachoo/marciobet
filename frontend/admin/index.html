@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="https://glitch.com/favicon.ico" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -49,7 +50,7 @@
   </head>
 
   <body class="hide">
-    <main class="main">
+    <main class="main container pt-3 pb-3">
       <h1>Painel de Administração</h1>
       <div class="tabelaUsuario">
         <h3>Painel dos usuarios</h3>
@@ -68,6 +69,14 @@
       </div>
       <div class="tabelaRodada">
         <h3>Painel da rodada atual</h3>
+        <div class="selectRodada pt-4 pb-4">
+          <label for="rodada">Selecione a rodada:</label>
+          <select
+            class="form-control form-select"
+            name="rodada"
+            id="selectRodada"
+          ></select>
+        </div>
         <table id="tabelaRodada">
           <thead>
             <tr>

@@ -19,7 +19,7 @@ body {
   width: 100%;
 }
 .hide {
-  display: none;
+  display: none !important;
 }
 .tabelaUsuario,
 .tabelaRodada,
@@ -39,10 +39,10 @@ body {
   width: 100%;
 }
 .error {
-  color: red;
+  color: red !important;
 }
 .success {
-  color: green;
+  color: green !important;
 }
 
 .btns {

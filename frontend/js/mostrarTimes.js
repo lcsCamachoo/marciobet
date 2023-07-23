@@ -8,7 +8,7 @@ const times = {
   FLUMINENSE: {
     img: "https://static.wixstatic.com/media/83bf78_82a4ee4cdfbc4bc29632d9f4cfc3b286~mv2.png/v1/fill/w_67,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-fluminense-fc-fluminense-de-feira-futebol-clube-sociedade-desportiva-juaze.png",
   },
-  "AMERICA-MG": {
+  "AMÉRICA-MG": {
     img: "https://static.wixstatic.com/media/83bf78_96addafcc464441d9aaaaddedd173af5~mv2.png/v1/fill/w_66,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-america-futebol-clube-minas-gerais-campeonato-mineiro-campeonato-brasileir.png",
   },
   "SÃO PAULO": {
@@ -59,77 +59,90 @@ const times = {
   SANTOS: {
     img: "https://static.wixstatic.com/media/83bf78_12e7eda0cabc44ab9f862da75c98dd24~mv2.png/v1/fill/w_78,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-santos-fc-santos-sao-paulo-esporte-clube-bahia-sport-club-corinthians-paul.png",
   },
+  INTERNACIONAL: {
+    img: "https://static.wixstatic.com/media/83bf78_9a8cccc5b7594fa7955e7418486824c2~mv2.png/v1/fill/w_79,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-sport-club-internacional-estadio-beira-rio-campeonato-brasileiro-serie-a-g.png",
+  },
 };
-
+// SÁB 29/07/2023 MARACANÃ 16:00
 const jogo1 = {
-  dia: "SÁBADO 15 DE ABRIL",
-  desc: "JOGO-1 (16:00) PALMEIRAS x CUIABÁ",
+  dia: "SÁBADO 29 DE JULHO",
+  desc: "JOGO-1 (16:00) FLUMINENSE x SANTOS",
   horario: "16:00",
-  time1: "PALMEIRAS",
+  time1: "FLUMINENSE",
+  time2: "SANTOS",
+};
+// SÁB 29/07/2023 BEIRA-RIO 16:00
+const jogo2 = {
+  dia: "SÁBADO 29 DE JULHO",
+  desc: "JOGO-2 (16:00) INTERNACIONAL x CUIABÁ",
+  horario: "16:00",
+  time1: "INTERNACIONAL",
   time2: "CUIABÁ",
 };
-const jogo2 = {
-  dia: "SÁBADO 15 DE ABRIL",
-  desc: "JOGO-2 (16:00) AMERICA-MG x FLUMINENSE",
-  horario: "16:00",
-  time1: "AMERICA-MG",
-  time2: "FLUMINENSE",
-};
+// SÁB 29/07/2023 NEO QUÍMICA ARENA 18:30
 const jogo3 = {
-  dia: "SÁBADO 15 DE ABRIL",
-  desc: "JOGO-3 (18:30) BOTAFOGO x SÃO PAULO",
+  dia: "SÁBADO 29 DE JULHO",
+  desc: "JOGO-3 (18:30) CORINTHIANS x VASCO",
   horario: "18:30",
-  time1: "BOTAFOGO",
-  time2: "SÃO PAULO",
-};
-const jogo4 = {
-  dia: "SÁBADO 15 DE ABRIL",
-  desc: "JOGO-4 (18:30) BRAGANTINO x BAHIA",
-  horario: "18:30",
-  time1: "BRAGANTINO",
-  time2: "BAHIA",
-};
-const jogo5 = {
-  dia: "SÁBADO 15 DE ABRIL",
-  desc: "JOGO-5 (18:30) ATHLETICO-PR x GOIÁS",
-  horario: "18:30",
-  time1: "ATHLETICO-PR",
-  time2: "GOIÁS",
-};
-const jogo6 = {
-  dia: "SÁBADO 15 DE ABRIL",
-  desc: "JOGO-6 (18:30) FORTALEZA x INTER-RS",
-  horario: "18:30",
-  time1: "FORTALEZA",
-  time2: "INTER-RS",
-};
-const jogo7 = {
-  dia: "SÁBADO 15 DE ABRIL",
-  desc: "JOGO-7 (21:00) ATLÉTICO-MG x VASCO ",
-  horario: "21:00",
-  time1: "ATLÉTICO-MG",
+  time1: "CORINTHIANS",
   time2: "VASCO",
 };
-const jogo8 = {
-  dia: "DOMINGO 16 DE ABRIL",
-  desc: "JOGO-8 (16h) FLAMENGO x CORITIBA",
-  horario: "16:00",
-  time1: "FLAMENGO",
-  time2: "CORITIBA",
-};
-const jogo9 = {
-  dia: "DOMINGO 16 DE ABRIL",
-  desc: "JOGO-9 (16H) CORINTHIANS x CRUZEIRO",
-  horario: "21:00",
-  time1: "CORINTHIANS",
+// SÁB 29/07/2023 NEO QUÍMICA ARENA 18:30
+const jogo4 = {
+  dia: "SÁBADO 29 DE JULHO",
+  desc: "JOGO-4 (18:30) ATHLETICO-PR x CRUZEIRO",
+  horario: "18:30",
+  time1: "ATHLETICO-PR",
   time2: "CRUZEIRO",
 };
-const jogo10 = {
-  dia: "DOMINGO 16 DE ABRIL",
-  desc: "JOGO-10(18:30H) GREMIO x SANTOS",
+// SÁB 29/07/2023 CASTELÃO (CE) 18:30
+
+const jogo5 = {
+  dia: "SÁBADO 29 DE JULHO",
+  desc: "JOGO-5 (18:30) FORTALEZA x BRAGANTINO",
   horario: "18:30",
-  time1: "GREMIO",
-  time2: "SANTOS",
+  time1: "FORTALEZA",
+  time2: "BRAGANTINO",
+};
+// SÁB 29/07/2023 INDEPENDÊNCIA 21:00
+const jogo6 = {
+  dia: "SÁBADO 29 DE JULHO",
+  desc: "JOGO-6 (21:00) ATLÉTICO-MG x FLAMENGO",
+  horario: "21:00",
+  time1: "ATLÉTICO-MG",
+  time2: "FLAMENGO",
+};
+// DOM 30/07/2023 MORUMBI 11:00
+const jogo7 = {
+  dia: "DOMINGO 30 DE JULHO",
+  desc: "JOGO-7 (11:00) SÃO PAULO x BAHIA ",
+  horario: "11:00",
+  time1: "SÃO PAULO",
+  time2: "BAHIA",
+};
+// DOM 30/07/2023 NILTON SANTOS (ENGENHÃO) 16:00
+const jogo8 = {
+  dia: "DOMINGO 30 DE JULHO",
+  desc: "JOGO-8 (16:00) BOTAFOGO x CORITIBA",
+  horario: "16:00",
+  time1: "BOTAFOGO",
+  time2: "CORITIBA",
+};
+// DOM 30/07/2023 INDEPENDÊNCIA 16:00
+const jogo9 = {
+  dia: "DOMINGO 30 DE JULHO",
+  desc: "JOGO-9 (16:00) AMÉRICA-MG x PALMEIRAS",
+  horario: "21:00",
+  time1: "AMÉRICA-MG",
+  time2: "PALMEIRAS",
+};
+// DOM 30/07/2023 HAILÉ PINHEIRO (SERRINHA) 18:30
+const jogo10 = {
+  dia: "DOMINGO 30 DE JULHO",
+  desc: "JOGO-10 (18:30H) GOIÁS x GREMIO",
+  horario: "18:30",
+  time1: "GOIÁS",
+  time2: "GREMIO",
 };
 const jogos = [
   jogo1,
@@ -149,7 +162,9 @@ const questionModel = document.querySelector(".questionModel");
 
 const showJogos = () => {
   jogos.forEach((jogo, index) => {
+    console.log(jogo);
     const question = questionModel.cloneNode(true);
+    question.querySelector(".dia").innerHTML = jogo.dia;
     if (index > 0) {
       if (jogo.dia === jogos[index - 1].dia) {
         question.querySelector(".dia").remove();
