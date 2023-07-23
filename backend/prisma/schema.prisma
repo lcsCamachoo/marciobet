@@ -36,6 +36,7 @@ model Rodada {
   criado      DateTime    @default(now())
   atualizado  DateTime    @updatedAt
   premioFinal Int         @default(1000)
+  nome        String
   respostas   Respostas[]
 }
 
