@@ -63,6 +63,9 @@ export const buscarUltimaRodada = async (
       orderBy: {
         criado: "desc",
       },
+      include: {
+        respostas: true,
+      },
     });
 
     res.status(200).send({
@@ -146,7 +149,9 @@ export const atualizarPremioFinal = async (
 export const inserir = async (req: Request, res: Response) => {
   try {
     const rodada = await prisma.rodada.create({
-      data: {},
+      data: {
+        ...req.body,
+      },
     });
 
     res.status(200).send({
@@ -170,6 +175,9 @@ export const listar = async (req: Request, res: Response) => {
     const rodadas = await prisma.rodada.findMany({
       orderBy: {
         criado: "asc",
+      },
+      include: {
+        respostas: true,
       },
     });
 
@@ -266,7 +274,7 @@ export const buscar = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const rodadas = await prisma.rodada.findUnique({
+    const rodada = await prisma.rodada.findUnique({
       where: {
         id: String(id),
       },
@@ -274,7 +282,7 @@ export const buscar = async (req: Request, res: Response) => {
 
     res.status(200).send({
       message: "Rodada encontrada",
-      rodadas,
+      rodada,
       error: false,
       success: true,
     });
