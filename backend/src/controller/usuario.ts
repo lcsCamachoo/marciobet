@@ -140,6 +140,12 @@ export const deletar = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
+    const respostas = await prisma.respostas.deleteMany({
+      where: {
+        usuarioId: String(id),
+      },
+    });
+
     const usuario = await prisma.usuario.delete({
       where: {
         id: String(id),
