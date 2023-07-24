@@ -82,7 +82,6 @@ const getUsuario = async () => {
 
 const getPremioFinal = async () => {
   const res = await api.get("/rodada/listar/premiofinal/" + rodadaId);
-  console.log(res);
   const premioFinal = res.data.premioFinal;
   const premioFinalFormatado = premioFinal.toLocaleString("pt-br", {
     style: "currency",

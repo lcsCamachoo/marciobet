@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Página do Ranking</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables library -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"
+    />
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
+    ></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/api.js"></script>
+  </head>
+
+  <body>
+    <main>
+      <img class="bg" src="../assets/bg-bet-legal.jpg" alt="" />
+
+      <div class="container">
+        <div class="carrousselContainer">
+          <div class="w-100 align-items-center justify-content-center">
+            <div
+              id="carouselExampleIndicators"
+              class="carousel slide"
+              data-ride="carousel"
+            >
+              <ol class="carousel-indicators">
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="0"
+                  class="active"
+                ></li>
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="1"
+                ></li>
+                <li
+                  data-target="#carouselExampleIndicators"
+                  data-slide-to="2"
+                ></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    class="d-block img-carrousel rounded w-100"
+                    src="../assets/carrousel1.jpg"
+                    alt="Primeiro Slide"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="d-block img-carrousel rounded w-100"
+                    src="../assets/carrousel2.jpg"
+                    alt="Segundo Slide"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="d-block img-carrousel rounded w-100"
+                    src="../assets/carrousel3.jpg"
+                    alt="Terceiro Slide"
+                  />
+                </div>
+              </div>
+              <a
+                class="carousel-control-prev"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Anterior</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Próximo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container infos">
+        <a type="button" href="/" class="btn play-btn">Jogar agora</a>
+
+        <div class="row">
+          <div class="col">
+            <div class="termosContainer">
+              <h1 class="title">Termos e Condições</h1>
+              <div class="termos bg-dark p-2">
+                <code class="text-light">
+                  Regras bet legal. Bet Legal é um game virtual de
+                  entretenimento e diversão on line que paga prêmios reais aos
+                  usuários registrados que alcançam o objetivo do game a cada
+                  etapa. O objetivo principal para vencer o game em cada etapa é
+                  alcançar o maior número de acertos em cada bilhete válido.
+                  Cada bilhete é composto de dez jogos com três opções de
+                  respostas cada um, o usuário deve escolher uma resposta para
+                  cada jogo a saber, vitória do time 1, empate ou vitória do
+                  time 2. Ao enviar as respostas, elas ficarão gravadas no banco
+                  de dados e na página do usuário para confirmação e não poderão
+                  mais serem alteradas. Os bilhetes só podem ser enviados até o
+                  horário de início do primeiro jogo da rodada, em cada rodada.
+                  O resultado de todos os jogos da rodada será inserido no
+                  sistema até 24 h após o final do último jogo da rodada,
+                  podendo ser inserido logo que terminar o último jogo da rodada
+                  dependendo do dia e horário. Após a inserção dos resultados, o
+                  sistema automaticamente atualiza o ranking da rodada com a
+                  pontuação de todos os usuários, todos poderão ver a pontuação
+                  na aba ranking do site, escolhendo a rodada dentro dessa aba.
+                  A pontuação de todos os usuários ficará disponível nesse local
+                  para futuras consultas. Para participar da rodada com bilhete
+                  válido, é preciso inserir créditos na página do usuário
+                  registrada, clicando em 'perfil' na página principal e
+                  'inserir créditos' na página do usuário registrado e logado,
+                  em seguida escolha o valor que quer depositar para adquirir
+                  créditos. Ao escolher o valor que quer depositar para adquirir
+                  créditos, o usuário será direcionado para um sistema de
+                  whatsapp onde receberá uma chave pix para depósito, ao mesmo
+                  tempo que os dados cadastrados seguem para inserir créditos em
+                  sua página. Ao fazer o depósito pix na chave recebida, o
+                  sistema confirma a aquisição de créditos e insere o valor na
+                  página de usuário em até 24h, após confirmação do depósito,
+                  para ser usada para o usuário enviar os bilhetes válidos para
+                  a rodada que deseja participar. A inserção de créditos na
+                  página do usuário pode acontecer alguns minutos após o usuário
+                  enviar o pix, dependendo do dia e horário da negociação.
+                  Prêmios. O prêmio de cada rodada será apresentado na página
+                  inicial e vale o último valor antes do cronômetro chegar a
+                  zero. Após o cronômetro chegar a zero, não será mais possível
+                  enviar nenhum bilhete, mesmo tendo créditos na página do
+                  usuário. Ganha o prêmio da rodada o usuário que marcar o maior
+                  número de pontos na rodada, cada jogo do bilhete vale 1 ponto
+                  para resposta correta. Em caso de mais de um usuário marcar o
+                  maior número de pontos da rodada, o prêmio será dividido em
+                  partes iguais para cada um desses. Cada bilhete terá o valor
+                  de 5,00 (cinco reais) para envio e o usuário deverá ter no
+                  mínimo esse valor em créditos depositados na sua conta de
+                  usuário. Os ganhadores de cada rodada, receberão seus prêmios
+                  em créditos em sua página e poderão solicitar o saque para sua
+                  chave pix registrada em seu nome de usuário a qualquer tempo
+                  no prazo de 30 dias a contar da data de divulgação do
+                  resultado da rodada em que foi ganhador. Ao solicitar o saque
+                  no botão 'saque' na página do usuário, o usuário será
+                  direcionado para um sistema de whatsapp onde colocará o valor
+                  que deseja sacar e o pagamento será processado em até 72 h,
+                  quando será feito o depósito em sua chave pix registrada em
+                  seu nome de usuário. Em casos de rodadas do campeonato onde
+                  qualquer dos jogos sejam, adiados, antecipados, anulados antes
+                  do fim, cancelados antes ou depois de iniciados ou não sejam
+                  finalizados por qualquer motivo, esse jogo será sem validade,
+                  zero ponto para todos os participantes, nesse jogo dessa
+                  rodada, valendo apenas o número de jogos restantes que
+                  terminarem com resultados oficiais. Bet legal deseja uma boa
+                  diversão a todos. Se você é bom de palpite, tai sua chance de
+                  ganhar. Se não é bom de palpite, talvez a sorte possa te
+                  ajudar. Na Bet legal, o melhor palpite é o seu!
+                </code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+
+  <script src="index.js"></script>
+</html>

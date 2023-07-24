@@ -132,7 +132,7 @@ const jogo8 = {
 const jogo9 = {
   dia: "DOMINGO 30 DE JULHO",
   desc: "JOGO-9 (16:00) AMÉRICA-MG x PALMEIRAS",
-  horario: "21:00",
+  horario: "16:00",
   time1: "AMÉRICA-MG",
   time2: "PALMEIRAS",
 };
@@ -162,7 +162,6 @@ const questionModel = document.querySelector(".questionModel");
 
 const showJogos = () => {
   jogos.forEach((jogo, index) => {
-    console.log(jogo);
     const question = questionModel.cloneNode(true);
     question.querySelector(".dia").innerHTML = jogo.dia;
     if (index > 0) {
