@@ -19,7 +19,7 @@ const inserirCredito = (valor) => {
   loader.classList.add("hide");
   codePixContainer.addEventListener("click", copyPix);
   const codigoPixElement = document.getElementById("codePix");
-  const link = getLinkWhatsapp(usuario, valor);
+  const link = getLinkWhatsapp(usuario, valor, "inserção de crédito");
   window.open(link, "_blank");
 
   if (valor == 10) {
@@ -42,7 +42,7 @@ const sacarSaldo = () => {
   const valor = window.prompt("Digite o valor que deseja sacar");
   if (!valor) return;
   if (valor > usuario.creditos) return alert("Saldo insuficiente");
-  const link = getLinkWhatsapp(usuario, valor);
+  const link = getLinkWhatsapp(usuario, valor, "saque");
   window.open(link, "_blank");
   // Redirecionar o usuário para a página desejada após o saque de saldo
 };
@@ -74,9 +74,9 @@ const verificaLogin = () => {
   return isLogged;
 };
 
-const getLinkWhatsapp = (usuario, valor) => {
+const getLinkWhatsapp = (usuario, valor, operacao) => {
   const link = `
-      https://api.whatsapp.com/send?phone=5581992129128&text=Solicitação%20de%20saque\n\r%20Pix:${usuario.chavePix}\n\r%20Email:${usuario.email}\n\r%20Nome:${usuario.nomeCompleto}\r\n%20Apelido:${usuario.apelido}\r\n%20Valor:${valor}%20
+      https://api.whatsapp.com/send?phone=5581999438465&text=Solicitação%20de%20${operacao}\n\r%20Pix:${usuario.chavePix}\n\r%20Email:${usuario.email}\n\r%20Nome:${usuario.nomeCompleto}\r\n%20Apelido:${usuario.apelido}\r\n%20Valor:${valor}%20
       `;
   return link;
 };
@@ -98,7 +98,6 @@ const showUsuario = async () => {
 
 const getRespostas = async () => {
   const usuario = await getUsuario();
-  console.log(usuario);
   return usuario;
 };
 
@@ -110,7 +109,6 @@ const getRodada = async () => {
 const showRespostas = async () => {
   const { Respostas: respostas } = await getRespostas();
   const rodada = await getRodada();
-  console.log({ res: respostas, rod: rodada });
 
   tbodyTabelaPontuacao.innerHTML = "";
 
@@ -143,8 +141,6 @@ const showRespostas = async () => {
   pontuacaoArray.sort((a, b) => {
     return new Date(a.data) - new Date(b.data);
   });
-
-  console.log({ pontuacaoArray });
 
   pontuacaoArray.forEach((resp, index) => {
     const data = new Date(resp.data).toLocaleString();

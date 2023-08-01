@@ -41,7 +41,6 @@ getRodadas();
 const handleChangeSelectRodada = async () => {
   rodadaId = selectRodada.value;
   await showRespostas(true);
-  await showRodadas(true);
 };
 
 selectRodada.addEventListener("change", handleChangeSelectRodada);
@@ -79,6 +78,7 @@ const showRespostas = async (porId = false) => {
   tbodyTabelaPontuacao.innerHTML = "";
 
   const pontuacaoArray = respostas.map((resp) => {
+    if (respostas.length == 0) return [];
     let pontuacaoFinal = 0;
     const pontuacao = {};
 
@@ -114,18 +114,18 @@ const showRespostas = async (porId = false) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
     <td>${i}</td>
-    <td>${resp.jogo1.nome}</td>
-    <td>${resp.jogo1.icon}</td>
-    <td>${resp.jogo2.icon}</td>
-    <td>${resp.jogo3.icon}</td>
-    <td>${resp.jogo4.icon}</td>
-    <td>${resp.jogo5.icon}</td>
-    <td>${resp.jogo6.icon}</td>
-    <td>${resp.jogo7.icon}</td>
-    <td>${resp.jogo8.icon}</td>
-    <td>${resp.jogo9.icon}</td>
-    <td>${resp.jogo10.icon}</td>
-    <td>${resp.jogo10.pontuacaoFinal}</td>
+    <td>${resp.jogo1.nome || "Nenhuma resposta inserida!"}</td>
+    <td>${resp.jogo1.icon || ""}</td>
+    <td>${resp.jogo2.icon || ""}</td>
+    <td>${resp.jogo3.icon || ""}</td>
+    <td>${resp.jogo4.icon || ""}</td>
+    <td>${resp.jogo5.icon || ""}</td>
+    <td>${resp.jogo6.icon || ""}</td>
+    <td>${resp.jogo7.icon || ""}</td>
+    <td>${resp.jogo8.icon || ""}</td>
+    <td>${resp.jogo9.icon || ""}</td>
+    <td>${resp.jogo10.icon || ""}</td>
+    <td>${resp.jogo10.pontuacaoFinal || ""}</td>
     `;
     tbodyTabelaPontuacao.appendChild(tr);
   });

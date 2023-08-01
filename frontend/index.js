@@ -133,6 +133,13 @@ const enviarRespostas = async () => {
     alert("Você precisa estar logado para enviar as respostas!");
     return;
   }
+  const cron = document.querySelector("#countdown");
+
+  // cronFormat = "1d 18h 49m 23s"
+  if (cron.innerHTML === "TEMPO ESGOTADO") {
+    alert("O tempo para responder as perguntas acabou!");
+    return;
+  }
 
   const respostas = getRespostas();
   const respostasLength = Object.keys(respostas).length;

@@ -7,6 +7,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Quiz - Bet Legal</title>
+
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- DataTables library -->
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css" />
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="./js/api.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -82,14 +91,25 @@
         <div style="gap: 10px;" class="col d-flex flex-column justify-content-center align-items-center">
           <div class="row">
             <div class="menu row">
-              <a type="button" id="btnLinkPerfil" href="/user" class="btn btn-primary btn-menu hide">Perfil</a>
-              <!-- <a type="button" href="/" class="btn btn-primary btn-menu">Regras</a> -->
-              <a type="button" href="/termos" class="btn btn-primary btn-menu">Termos</a>
-              <a type="button" href="/ranking" class="btn btn-primary btn-menu">Ranking</a>
+              <a type="button" id="btnLinkPerfil" href="/user" class="btn btn-primary btn-menu hide rounded">Perfil</a>
+              <a type="button" href="/regras" class="btn btn-primary btn-menu rounded">Regras</a>
+              <a type="button" href="/termos" class="btn btn-primary btn-menu rounded">Termos</a>
+              <a type="button" href="/ranking" class="btn btn-primary btn-menu rounded">Ranking</a>
             </div>
           </div>
+          <div class="iframe container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/GgxPJSFtMxI?autoplay=1&start=180"
+              title="YouTube video player" frameborder="0"
+              
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
           <span id="title">Brasileirão A - 2023</span>
-          <p id="title">Rodada 1</p>
+          <div class="uteis">
+            <p>Rodada cheia valendo 10 pontos. Ganha quem fizer mais pontos.</p>
+          </div>
+
+          <p id="title">Rodada 18</p>
           <div class="questions">
             <div class="questionModel">
               <p class="dia"></p>
@@ -133,6 +153,8 @@
           </div>
           <div class="d-flex flex-column align-items-center justify-content-center pb-4">
             <span>Prêmio Atualizando</span>
+            <span>As apostas serão validadas somente após o prêmio chegar a 2.000,00. Caso contrário os créditos serão
+              devolvidos para uso na próxima rodada.</span>
             <span class="title" id="premioFinal"></span>
           </div>
         </div>
@@ -143,6 +165,7 @@
 </body>
 <script src="./js/cronometro.js"></script>
 <script src="./js/mostrarTimes.js"></script>
+<script type="module" src="./js/firebase.js"></script>
 <!-- JavaScript (Opcional) -->
 <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

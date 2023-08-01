@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+
 body {
   overflow: hidden;
   width: 100%;
@@ -12,16 +13,15 @@ body {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  background: linear-gradient(
-    to right,
-    #010103,
-    #0f0e38,
-    #242188,
-    #302db8,
-    #3432c4
-  );
+  background: linear-gradient(to right,
+      #010103,
+      #0f0e38,
+      #242188,
+      #302db8,
+      #3432c4);
   font-size: 18px;
 }
+
 main {
   display: flex;
   flex-direction: column;
@@ -33,6 +33,7 @@ main {
   margin-top: 20px;
   padding: 20px 0 50px 0;
   color: #fff;
+  overflow: auto;
 }
 
 .bg {
@@ -47,6 +48,7 @@ main {
 .hide {
   display: none;
 }
+
 .form {
   width: 100%;
   display: flex;
@@ -56,9 +58,11 @@ main {
   height: 100%;
   gap: 10px;
 }
+
 .containerForm {
   margin: auto;
 }
+
 form {
   background-color: white;
   padding: 20px;
@@ -93,6 +97,7 @@ a {
   text-decoration: none;
   transition: all 0.3s ease-in-out;
 }
+
 a:hover {
   text-decoration: underline;
 }
