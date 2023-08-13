@@ -43,13 +43,14 @@ model Rodada {
 }
 
 model Jogos {
-  id        String   @id @default(uuid()) 
+  id        String  @id @default(uuid())
   time1     String
   time2     String
-  descricao String
+  descricao String?
   horario   String
-  local     String
-  Rodada    Rodada?  @relation(fields: [rodadaId], references: [id])
+  dia       String
+  local     String?
+  Rodada    Rodada? @relation(fields: [rodadaId], references: [id])
   rodadaId  String?
 }
 
