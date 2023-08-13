@@ -40,7 +40,7 @@ const logout = () => {
 
 //gets
 const getUltimaRodada = async () => {
-  const res = await api.get("/rodada/listarUltima");
+  const res = await api.get("/rodada/buscarAtual");
   rodadaId = res.data.rodada.id;
   return res.data.rodada;
 };

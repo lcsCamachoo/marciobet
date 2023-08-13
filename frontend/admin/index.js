@@ -4,7 +4,9 @@ const tabelaUsuario = document.getElementById("tabelaUsuario"),
   tbodyTabelaRodada = tabelaRodada.querySelector("tbody"),
   tabelaPontuacao = document.getElementById("tabelaPontuacao"),
   tbodyTabelaPontuacao = tabelaPontuacao.querySelector("tbody"),
-  selectRodada = document.getElementById("selectRodada");
+  selectRodada = document.getElementById("selectRodada"),
+  selectRodadaAtual = document.getElementById("selectRodadaAtual"),
+  btnDefinirRodadaAtual = document.querySelector(".btnDefinirRodada");
 
 let initTabelaUser = false;
 let initTabelaRodada = false;
@@ -14,13 +16,13 @@ let respostas = [];
 
 const getRodadas = async () => {
   const response = await api.get("/rodada/listar");
-  console.log(response.data.rodadas);
   const rodadas = response.data.rodadas.reverse();
   rodadas.forEach((rodada) => {
     const option = document.createElement("option");
     option.value = rodada.id;
     option.innerHTML = rodada.nome;
     selectRodada.appendChild(option);
+    selectRodadaAtual.appendChild(option.cloneNode(true));
   });
   return rodadas;
 };
@@ -54,6 +56,11 @@ const getRodadaById = async (id) => {
   const response = await api.get("/rodada/buscar/" + id);
   return response.data.rodada;
 };
+
+const definirRodada = async () => {
+  const response = await api.get("/rodada/definirAtual/" + rodadaId);
+  await showRodadas(true);
+}
 
 const showRespostas = async (porId = false) => {
   let rodada = {};
@@ -196,6 +203,12 @@ const showUsuarios = async () => {
       });
     });
 };
+const submitRodadaAtual = async () => {
+  const res = await api.put(`/rodada/definirAtual/${selectRodadaAtual.value }`);
+  console.log(res)
+}
+btnDefinirRodadaAtual.addEventListener("click", submitRodadaAtual);
+
 
 const hcEditarRodada = async () => {
   const jogosElement = document.querySelectorAll(".jogoRodada");

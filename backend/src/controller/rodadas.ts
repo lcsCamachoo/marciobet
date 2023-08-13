@@ -1,5 +1,93 @@
+
 import { Request, Response } from "express";
 import { prisma } from "../../prisma/client";
+
+export const inserirJogos = async (req: Request, res: Response) => {
+  try {
+    const {
+      jogos,
+      rodadaId,
+    } = req.body;
+
+    const rodada = await prisma.rodada.update({
+      where: {
+        id: String(rodadaId),
+      },
+      data: {
+        jogos: {
+          set: jogos
+        }
+      },
+    });
+
+    res.status(200).send({
+      message: "Rodada criada com sucesso",
+      rodada,
+      error: false,
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      message: "Ocorreu um erro ao criar a rodada",
+      error: true,
+      success: false,
+    });
+  }
+}
+
+export const findAtual = async (req: Request, res: Response) => {
+  try {
+    const rodada = await prisma.rodada.findFirst({
+      where: {
+        atual: true,
+      },
+    });
+    return res.status(200).send({
+      message: "Rodada atual encontrada",
+      rodada,
+      error: false,
+      success: true,
+    });
+  } catch (erro) {
+    return res.status(400).send({
+      message: "Ocorreu um erro ao buscar a rodada atual",
+      error: true,
+    });
+  }
+}
+
+export const definirAtual = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;  
+    const rodada = await prisma.rodada.update({
+      where: {
+        id: String(id),
+      },
+      data: {
+        atual:true
+      }
+    });
+    const others = await prisma.rodada.updateMany({
+      where: {
+        id: {
+          not: String(id),
+        },
+      },
+      data: {
+        atual:false
+      }
+    });
+    return res.status(200).send({
+      message: "Rodada atualizada com sucesso",
+    });
+  } catch (erro) {
+      return res.status(400).send({
+        message: "Ocorreu um erro ao atualizar a rodada",
+        error: true,
+      })  
+  }
+}
 
 export const atualizarJogos = async (
   req: Request,
@@ -178,6 +266,7 @@ export const listar = async (req: Request, res: Response) => {
       },
       include: {
         respostas: true,
+        jogos: true,
       },
     });
 

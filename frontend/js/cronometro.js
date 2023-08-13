@@ -1,7 +1,7 @@
 // <div id="countdown"></div>
 
 // Define a data final do cronômetro (1 hora a partir do momento em que a página é carregada)
-const countDownDate = new Date("2023-08-06T18:29:59").getTime();
+const countDownDate = new Date("2023-08-12T20:59:59").getTime();
 
 // Atualiza o cronômetro a cada segundo
 const x = setInterval(() => {
@@ -12,7 +12,7 @@ const x = setInterval(() => {
   const distance = countDownDate - now;
 if (distance < 0) {
     clearInterval(x);
-    document.getElementById("submit").disabled = true;
+    document.getElementById("btnEnviar").disabled = true;
     document.getElementById("countdown").innerHTML = "TEMPO ESGOTADO";
     return
   }

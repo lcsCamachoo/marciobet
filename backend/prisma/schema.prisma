@@ -36,8 +36,21 @@ model Rodada {
   criado      DateTime    @default(now())
   atualizado  DateTime    @updatedAt
   premioFinal Int         @default(1000)
+  jogos       Jogos[]
   nome        String
   respostas   Respostas[]
+  atual       Boolean     @default(false)
+}
+
+model Jogos {
+  id        String   @id @default(uuid()) 
+  time1     String
+  time2     String
+  descricao String
+  horario   DateTime
+  local     String
+  Rodada    Rodada?  @relation(fields: [rodadaId], references: [id])
+  rodadaId  String?
 }
 
 model Respostas {

@@ -17,9 +17,18 @@ body {
   justify-content: flex-start;
   gap: 10px;
   width: 100%;
+  overflow-x: auto;
 }
 .hide {
   display: none !important;
+}
+.definirRodada {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  overflow-x: hidden;
 }
 .tabelaUsuario,
 .tabelaRodada,
@@ -50,6 +59,58 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 10px;
+}
+
+.selectRodadaAtual {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.alterarTimes {
+  max-width: 100%;
+}
+
+.formAlterarTimes {
+  display: flex;
+  flex-wrap: wrap;
+    align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.timesExemplos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.timesExemplos p {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: .5rem;
+}
+
+.timesExemplos p:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+.exampleTimeInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 10px;
 }
 

@@ -1,147 +1,367 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="https://glitch.com/favicon.ico" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"
-    />
-    <!-- jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-    <!-- DataTables library -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"
-    />
-    <script
-      type="text/javascript"
-      charset="utf8"
-      src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
-    ></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../js/api.js"></script>
-    <title>Página do Administrador</title>
-  </head>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css" />
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <body class="hide">
-    <main class="main container pt-3 pb-3">
-      <h1>Painel de Administração</h1>
-      <div class="tabelaUsuario">
-        <h3>Painel dos usuarios</h3>
-        <table id="tabelaUsuario">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Crédito</th>
-              <th>Chave Pix</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+  <!-- DataTables library -->
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css" />
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="../js/api.js"></script>
+  <title>Página do Administrador</title>
+</head>
+
+<body class="hide">
+  <main class="main container pt-3 pb-3">
+    <h1>Painel de Administração</h1>
+    <div class="tabelaUsuario">
+      <h3>Painel dos usuarios</h3>
+      <table id="tabelaUsuario">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Crédito</th>
+            <th>Chave Pix</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="definirRodada">
+      <h3>Definir Rodada atual</h3>
+      <div class="selectRodadaAtual pt-4 pb-4">
+        <label for="rodadaAtual">Selecione a rodada:</label>
+        <select class="form-control form-select" name="rodadaAtual" id="selectRodadaAtual"></select>
+
+        <button class="btn btn-primary btnDefinirRodada">Definir</button>
+
       </div>
-      <div class="tabelaRodada">
-        <h3>Painel da rodada atual</h3>
-        <div class="selectRodada pt-4 pb-4">
-          <label for="rodada">Selecione a rodada:</label>
-          <select
-            class="form-control form-select"
-            name="rodada"
-            id="selectRodada"
-          ></select>
+    </div>
+
+    <div class="alterarTimes w-100">
+      <h3>Alterar Times da rodada atual</h3>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary mb-2 mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Instruções
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body timesExemplos">
+              <div class="exampleTimeInput">
+                <span>Seguir os nomes dos times corretamente e o exemplo.</span>
+                <span>Time 1: SÃO PAULO</span>
+                <span>Time 2: CORINTHIANS</span>
+                <span>Horário: 19:00</span>
+                <span>Dia: SEGUNDA 19 DE AGOSTO</span>
+              </div>
+              <hr style="width: 100%;">
+              <p>ATHLETICO-PR</p>
+              <p>ATLÉTICO-MG</p>
+              <p>AMÉRICA-MG</p>
+              <p>BOTAFOGO</p>
+              <p>BRAGANTINO</p>
+              <p>BAHIA</p>
+              <p>CRUZEIRO</p>
+              <p>CORITIBA</p>
+              <p>CEARÁ</p>
+              <p>CORINTHIANS</p>
+              <p>FORTALEZA</p>
+              <p>FLUMINENSE</p>
+              <p>FLAMENGO</p>
+              <p>GRÊMIO</p>
+              <p>INTERNACIONAL</p>
+              <p>INTER-RS</p>
+              <p>PALMEIRAS</p>
+              <p>SANTOS</p>
+              <p>SÃO PAULO</p>
+              <p>SANTOS</p>
+              <p>VASCO</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          </div>
         </div>
-        <table id="tabelaRodada">
-          <thead>
-            <tr>
-              <th>Jogo1</th>
-              <th>Jogo2</th>
-              <th>Jogo3</th>
-              <th>Jogo4</th>
-              <th>Jogo5</th>
-              <th>Jogo6</th>
-              <th>Jogo7</th>
-              <th>Jogo8</th>
-              <th>Jogo9</th>
-              <th>Jogo10</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
       </div>
-      <div class="tabelaPontuacao">
-        <h3>Painel das pontuações</h3>
-        <table id="tabelaPontuacao">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Nome</th>
-              <th>Jogo1</th>
-              <th>Jogo2</th>
-              <th>Jogo3</th>
-              <th>Jogo4</th>
-              <th>Jogo5</th>
-              <th>Jogo6</th>
-              <th>Jogo7</th>
-              <th>Jogo8</th>
-              <th>Jogo9</th>
-              <th>Jogo10</th>
-              <th>Pontuação Final</th>
-              <th>Horário</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div class="accordion w-100" id="accordionExample">
+        <div class="accordion-item w-100">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+              Jogo 1
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Jogo 2
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Jogo 3
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Jogo 4
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              Jogo 5
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              Jogo 6
+            </button>
+          </h2>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSeven">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              Jogo 7
+            </button>
+          </h2>
+          <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingEight">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+              Jogo 8
+            </button>
+          </h2>
+          <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingNine">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+              Jogo 9
+            </button>
+          </h2>
+          <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+              Jogo 10
+            </button>
+          </h2>
+          <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form class="formAlterarTimes">
+                <input placeholder="Time 1" class="input form-control" type="text">
+                <input placeholder="Time 2" class="input form-control" type="text">
+                <input placeholder="Horário" class="input form-control" type="text">
+                <input placeholder="Dia" class="input form-control" type="text">
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
-    <script src="../js/verificaAdm.js"></script>
+    </div>
+    <div class="tabelaRodada">
+      <h3>Painel das rodadas</h3>
+      <div class="selectRodada pt-4 pb-4">
+        <label for="rodada">Selecione a rodada:</label>
+        <select class="form-control form-select" name="rodada" id="selectRodada"></select>
+      </div>
+      <table id="tabelaRodada">
+        <thead>
+          <tr>
+            <th>Jogo1</th>
+            <th>Jogo2</th>
+            <th>Jogo3</th>
+            <th>Jogo4</th>
+            <th>Jogo5</th>
+            <th>Jogo6</th>
+            <th>Jogo7</th>
+            <th>Jogo8</th>
+            <th>Jogo9</th>
+            <th>Jogo10</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="tabelaPontuacao">
+      <h3>Painel das pontuações</h3>
+      <table id="tabelaPontuacao">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Nome</th>
+            <th>Jogo1</th>
+            <th>Jogo2</th>
+            <th>Jogo3</th>
+            <th>Jogo4</th>
+            <th>Jogo5</th>
+            <th>Jogo6</th>
+            <th>Jogo7</th>
+            <th>Jogo8</th>
+            <th>Jogo9</th>
+            <th>Jogo10</th>
+            <th>Pontuação Final</th>
+            <th>Horário</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+  <script src="../js/verificaAdm.js"></script>
 
-    <script
-      type="text/javascript"
-      charset="utf8"
-      src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"
-    ></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"
-    ></script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
 
-    <script src="index.js"></script>
-  </body>
+  <script src="index.js"></script>
+</body>
+
 </html>

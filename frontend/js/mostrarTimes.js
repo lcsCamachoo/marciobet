@@ -53,7 +53,7 @@ const times = {
   CRUZEIRO: {
     img: "https://static.wixstatic.com/media/83bf78_4b79f62bd7644775a26231fb47e69641~mv2.png/v1/fill/w_78,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-cruzeiro-esporte-clube-parana-clube-2018-campeonato-brasileiro-serie-a-bra.png",
   },
-  GREMIO: {
+  GRÊMIO: {
     img: "https://static.wixstatic.com/media/83bf78_f02b88d3ae1c4b66ad769a254288e6c7~mv2.png/v1/fill/w_78,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-gremio-hd-logo-thumbnail.png",
   },
   SANTOS: {
@@ -64,85 +64,75 @@ const times = {
   },
 };
 const jogo1 = {
-  dia: "SÁBADO 05 DE AGOSTO",
-  desc: "JOGO-1 SÁB 05/08/2023 VILA BELMIRO 16:00",
-  horario: "16:00",
-  time1: "SANTOS",
-  time2: "ATHLETICO-PR",
+  dia: "SÁBADO 12 DE AGOSTO",
+  desc: "JOGO-1 SÁB 12/08/2023 NILTON SANTOS (ENGENHÃO) 21:00",
+  horario: "21:00",
+  time1: "BOTAFOGO",
+  time2: "INTERNACIONAL",
 };
 const jogo2 = {
-  dia: "SÁBADO 05 DE AGOSTO",
-  desc: "JOGO-2 SÁB 05/08/2023 HAILÉ PINHEIRO (SERRINHA) 18:30",
-  horario: "18:30",
-  time1: "GOIÁS",
-  time2: "FORTALEZA",
+  dia: "DOMINGO 13 DE AGOSTO",
+  desc: "JOGO-2 DOM 13/08/2023 MINEIRÃO 11:00",
+  horario: "11:00",
+  time1: "ATLÉTICO-MG",
+  time2: "BAHIA",
 };
 const jogo3 = {
-  dia: "SÁBADO 05 DE AGOSTO",
-
-  desc: "JOGO-3 SÁB 05/08/2023 BEIRA-RIO 18:30",
-  horario: "18:30",
-  time1: "INTERNACIONAL",
-  time2: "CORINTHIANS",
+  dia: "DOMINGO 13 DE AGOSTO",
+  desc: "JOGO-3 DOM 13/08/2023 NEO QUÍMICA ARENA 16:00",
+  horario: "16:00",
+  time1: "CORINTHIANS",
+  time2: "CORITIBA",
 };
 const jogo4 = {
-  dia: "SÁBADO 05 DE AGOSTO",
-
-  desc: "JOGO-4 SÁB 05/08/2023 MARACANÃ 21:00",
-  horario: "21:00",
-  time1: "FLUMINENSE",
-  time2: "PALMEIRAS",
+  dia: "DOMINGO 13 DE AGOSTO",
+  desc: "JOGO-4 DOM 13/08/2023 ARENA DO GRÊMIO 16:00",
+  horario: "16:00",
+  time1: "GRÊMIO",
+  time2: "FLUMINENSE",
 };
 
 const jogo5 = {
-  dia: "DOMINGO 06 DE AGOSTO",
-  desc: "DOM 06/08/2023 SÃO JANUÁRIO 16:00",
+  dia: "DOMINGO 13 DE AGOSTO",
+  desc: "JOGO-5 DOM 13/08/2023 INDEPENDÊNCIA 16:00",
   horario: "16:00",
-  time1: "VASCO",
-  time2: "GREMIO",
+  time1: "AMÉRICA-MG",
+  time2: "GOIÁS",
 };
 const jogo6 = {
-  dia: "DOMINGO 06 DE AGOSTO",
-
-  desc: "JOGO-6 DOM 06/08/2023 MORUMBI 16:00",
-  horario: "16:00",
-
-  time1: "SÃO PAULO",
-  time2: "ATLÉTICO-MG",
+  dia: "DOMINGO 13 DE AGOSTO",
+  desc: "JOGO-6 DOM 13/08/2023 MARACANÃ 18:30",
+  horario: "18:30",
+  time1: "FLAMENGO",
+  time2: "SÃO PAULO",
 };
 const jogo7 = {
-  dia: "DOMINGO 06 DE AGOSTO",
-
-  desc: "JOGO-7 DOM 06/08/2023 MINEIRÃO 18:30 ",
+  dia: "DOMINGO 13 DE AGOSTO",
+  desc: "JOGO-7 DOM 13/08/2023 CASTELÃO (CE) 18:30",
   horario: "18:30",
-  time1: "CRUZEIRO",
-  time2: "BOTAFOGO",
+  time1: "FORTALEZA",
+  time2: "SANTOS",
 };
 const jogo8 = {
-  dia: "DOMINGO 06 DE AGOSTO",
-
-  desc: "JOGO-8 DOM 06/08/2023 COUTO PEREIRA 18:30",
-  horario: "18:30",
-
-  time1: "CORITIBA",
-  time2: "BRAGANTINO",
+  dia: "SEGUNDA 14 DE AGOSTO",
+  desc: "JOGO-8 SEG 14/08/2023 ALLIANZ PARQUE 19:00",
+  horario: "19:00",
+  time1: "PALMEIRAS",
+  time2: "CRUZEIRO",
 };
 const jogo9 = {
-  dia: "DOMINGO 06 DE AGOSTO",
-
-  desc: "JOGO-9 DOM 06/08/2023 ITAIPAVA ARENA FONTE NOVA 18:30",
-  horario: "18:30",
-
-  time1: "BAHIA",
-  time2: "AMÉRICA-MG",
+  dia: "SEGUNDA 14 DE AGOSTO",
+  desc: "JOGO-9 SEG 14/08/2023 ALLIANZ PARQUE 19:00",
+  horario: "19:00",
+  time1: "BRAGANTINO",
+  time2: "VASCO",
 };
 const jogo10 = {
-  dia: "DOMINGO 06 DE AGOSTO",
-
-  desc: "JOGO-10 DOM 06/08/2023 ARENA PANTANAL 20:00",
+  dia: "TERÇA 15 DE AGOSTO",
+  desc: "JOGO-10 TER 15/08/2023 LIGA ARENA 20:00",
   horario: "20:00",
-  time1: "CUIABÁ",
-  time2: "FLAMENGO",
+  time1: "ATHLETICO-PR",
+  time2: "CUIABÁ",
 };
 const jogos = [
   jogo1,
