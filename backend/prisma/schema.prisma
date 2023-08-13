@@ -47,7 +47,7 @@ model Jogos {
   time1     String
   time2     String
   descricao String
-  horario   DateTime
+  horario   String
   local     String
   Rodada    Rodada?  @relation(fields: [rodadaId], references: [id])
   rodadaId  String?

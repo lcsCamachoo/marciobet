@@ -25,11 +25,11 @@ const enviarTimes = async () => {
     inputs.forEach((input) => {
       time[input.name] = input.value;
     });
-    console.log(time)
     times.push(time);
   });
   console.log(times);
-  const response = await api.post("/rodada/inserirJogos", { times, rodadaId });
+  const res = await api.post("/rodada/inserirJogos", { times, rodadaId });
+  console.log(res)
 }
 
 btnEnviarTimes.addEventListener("click", enviarTimes);
