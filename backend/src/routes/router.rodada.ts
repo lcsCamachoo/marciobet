@@ -19,7 +19,7 @@ export const routerRodada = Router();
 
 routerRodada.post("/rodada/inserir", inserir);
 
-routerRodada.post("/rodada/inserirJogos/:id", inserirJogos);
+routerRodada.post("/rodada/inserirJogos", inserirJogos);
 
 routerRodada.get("/rodada/listarUltima", buscarUltimaRodada);
 

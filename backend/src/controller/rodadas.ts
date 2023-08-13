@@ -5,7 +5,7 @@ import { prisma } from "../../prisma/client";
 export const inserirJogos = async (req: Request, res: Response) => {
   try {
     const {
-      jogos,
+      times,
       rodadaId,
     } = req.body;
 
@@ -15,7 +15,7 @@ export const inserirJogos = async (req: Request, res: Response) => {
       },
       data: {
         jogos: {
-          set: jogos
+          set: times
         }
       },
     });

@@ -6,13 +6,33 @@ const tabelaUsuario = document.getElementById("tabelaUsuario"),
   tbodyTabelaPontuacao = tabelaPontuacao.querySelector("tbody"),
   selectRodada = document.getElementById("selectRodada"),
   selectRodadaAtual = document.getElementById("selectRodadaAtual"),
-  btnDefinirRodadaAtual = document.querySelector(".btnDefinirRodada");
+  btnDefinirRodadaAtual = document.querySelector(".btnDefinirRodada"),
+  btnEnviarTimes = document.querySelector(".btnEnviarTimes");
 
 let initTabelaUser = false;
 let initTabelaRodada = false;
 let initTabelaPontuacao = false;
 let rodadaId = "";
 let respostas = [];
+
+const enviarTimes = async () => {
+  const forms = document.querySelectorAll(".formAlterarTimes");
+  const times = [];
+  forms.forEach((form) => {
+    
+    const time = {};
+    const inputs = form.querySelectorAll("input");
+    inputs.forEach((input) => {
+      time[input.name] = input.value;
+    });
+    console.log(time)
+    times.push(time);
+  });
+  console.log(times);
+  const response = await api.post("/rodada/inserirJogos", { times, rodadaId });
+}
+
+btnEnviarTimes.addEventListener("click", enviarTimes);
 
 const getRodadas = async () => {
   const response = await api.get("/rodada/listar");
@@ -37,7 +57,7 @@ const handleChangeSelectRodada = async () => {
 selectRodada.addEventListener("change", handleChangeSelectRodada);
 
 const getRodada = async () => {
-  const response = await api.get("/rodada/listarUltima");
+  const response = await api.get("/rodada/buscarAtual");
   rodadaId = response.data.rodada.id;
   return response.data.rodada;
 };

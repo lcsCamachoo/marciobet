@@ -26,7 +26,7 @@ const getUser = async () => {
   const { idFormatado: id } = getIdUserCookie();
   const urlRender = "https://bet-marcio.onrender.com";
   const urlDev = "http://localhost:3777";
-  const res = await fetch(`${urlDev}/usuario/buscar/` + id);
+  const res = await fetch(`${urlRender}/usuario/buscar/` + id);
   const resJson = await res.json();
   const { usuario } = resJson;
   console.log(resJson);
