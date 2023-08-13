@@ -30,6 +30,10 @@ const enviarTimes = async () => {
   console.log(times);
   const res = await api.post("/rodada/inserirJogos", { times, rodadaId });
   console.log(res)
+  if(res.data.success) {
+    alert("Times enviados com sucesso");
+    
+  }
 }
 
 btnEnviarTimes.addEventListener("click", enviarTimes);

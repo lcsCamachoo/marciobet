@@ -13,6 +13,7 @@ import {
   definirAtual,
   findAtual,
   inserirJogos,
+  listarJogosRodadaAtual
 } from "../controller/rodadas";
 
 export const routerRodada = Router();
@@ -22,6 +23,8 @@ routerRodada.post("/rodada/inserir", inserir);
 routerRodada.post("/rodada/inserirJogos", inserirJogos);
 
 routerRodada.get("/rodada/listarUltima", buscarUltimaRodada);
+
+routerRodada.get("/rodada/listarJogosRodadaAtual", listarJogosRodadaAtual);
 
 routerRodada.get("/rodada/buscarAtual", findAtual);
 

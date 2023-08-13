@@ -92,11 +92,11 @@ td {
 }
 
 .play-btn {
-  background-color: rgb(255, 123, 0);
-  color: #fff;
-  transition: all 0.5s ease-in;
+  background-color: rgb(255, 123, 0) !important;
+  color: #fff !important;
+  transition: all 0.5s ease-in !important;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 20px !important;
 }
 .play-btn:hover {
   background-color: rgb(255, 162, 0);

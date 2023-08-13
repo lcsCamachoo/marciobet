@@ -134,23 +134,31 @@ const jogo10 = {
   time1: "ATHLETICO-PR",
   time2: "CUIABÁ",
 };
-const jogos = [
-  jogo1,
-  jogo2,
-  jogo3,
-  jogo4,
-  jogo5,
-  jogo6,
-  jogo7,
-  jogo8,
-  jogo9,
-  jogo10,
-];
+
+const getJogos = async () => {
+  const res = await fetch("http://localhost:3777/rodada/listarJogosRodadaAtual");
+  const data = await res.json();
+  console.log(data);
+  return data.jogos;
+}
+// const jogos = [
+//   jogo1,
+//   jogo2,
+//   jogo3,
+//   jogo4,
+//   jogo5,
+//   jogo6,
+//   jogo7,
+//   jogo8,
+//   jogo9,
+//   jogo10,
+// ];
 
 const questions = document.querySelector(".questions");
 const questionModel = document.querySelector(".questionModel");
 
-const showJogos = () => {
+const showJogos = async () => {
+  const jogos = await getJogos();
   jogos.forEach((jogo, index) => {
     const question = questionModel.cloneNode(true);
     question.querySelector(".dia").innerHTML = jogo.dia;

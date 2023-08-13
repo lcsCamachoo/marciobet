@@ -2,20 +2,57 @@
 import { Request, Response } from "express";
 import { prisma } from "../../prisma/client";
 
+export const listarJogosRodadaAtual = async (req: Request, res: Response) => {
+  try {
+    const rodada = await prisma.rodada.findFirst({
+      where: {
+        atual: true,
+      },
+      select: {
+        id: true,
+      }
+    });
+    if(!rodada) throw new Error("Rodada não encontrada");
+    const jogos = await prisma.jogos.findMany({
+      where: {
+        rodadaId: String(rodada?.id),
+      }
+    });
+    res.status(200).send({
+      message: "Jogos encontrados",
+      jogos,
+      error: false,
+      success: true,
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: "Ocorreu um erro ao buscar os jogos",
+      error: true,
+      success: false,
+    });
+  }
+}
+
 export const inserirJogos = async (req: Request, res: Response) => {
   try {
     const {
       times,
       rodadaId,
     } = req.body;
-
+    const deleteJogos = await prisma.jogos.deleteMany({
+      where: {
+        rodadaId: String(rodadaId),
+      }
+    });
     const rodada = await prisma.rodada.update({
       where: {
         id: String(rodadaId),
       },
       data: {
         jogos: {
-          set: times
+          createMany:{
+              data:times
+          }
         }
       },
     });

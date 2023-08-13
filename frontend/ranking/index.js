@@ -59,7 +59,7 @@ const getRespostas = async () => {
 };
 
 const getRodada = async () => {
-  const response = await api.get("/rodada/listarUltima");
+  const response = await api.get("/rodada/buscarAtual");
   rodadaId = response.data.rodada.id;
   return response.data.rodada;
 };
@@ -88,19 +88,11 @@ const showRespostas = async (porId = false) => {
       const resposta = resp[key];
       const acerto = resposta == jogo;
       pontuacaoFinal += acerto ? 1 : 0;
-      pontuacao[key] = acerto
-        ? {
+      pontuacao[key] = {
             nome: resp.usuario.nomeCompleto,
             pontuacaoFinal,
             acerto,
-            icon: '<i class="fas fa-check success text-success"></i>',
           }
-        : {
-            nome: resp.usuario.nomeCompleto,
-            pontuacaoFinal,
-            acerto,
-            icon: '<i class="fas fa-times error text-danger"></i>',
-          };
     }
     return pontuacao;
   });
@@ -109,23 +101,14 @@ const showRespostas = async (porId = false) => {
     if (a.jogo10.pontuacaoFinal < b.jogo10.pontuacaoFinal) return 1;
     return 0;
   });
+  console.log(pontuacaoArray);
   pontuacaoArray.forEach((resp, index) => {
     const i = index + 1;
     const tr = document.createElement("tr");
     tr.innerHTML = `
     <td>${i}</td>
     <td>${resp.jogo1.nome || "Nenhuma resposta inserida!"}</td>
-    <td>${resp.jogo1.icon || ""}</td>
-    <td>${resp.jogo2.icon || ""}</td>
-    <td>${resp.jogo3.icon || ""}</td>
-    <td>${resp.jogo4.icon || ""}</td>
-    <td>${resp.jogo5.icon || ""}</td>
-    <td>${resp.jogo6.icon || ""}</td>
-    <td>${resp.jogo7.icon || ""}</td>
-    <td>${resp.jogo8.icon || ""}</td>
-    <td>${resp.jogo9.icon || ""}</td>
-    <td>${resp.jogo10.icon || ""}</td>
-    <td>${resp.jogo10.pontuacaoFinal || ""}</td>
+    <td>${resp.jogo10.pontuacaoFinal}</td>
     `;
     tbodyTabelaPontuacao.appendChild(tr);
   });
