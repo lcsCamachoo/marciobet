@@ -11,7 +11,7 @@ const times = {
   "AMÉRICA-MG": {
     img: "https://static.wixstatic.com/media/83bf78_96addafcc464441d9aaaaddedd173af5~mv2.png/v1/fill/w_66,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-america-futebol-clube-minas-gerais-campeonato-mineiro-campeonato-brasileir.png",
   },
-  "SÃO PAULO": {
+  "SÃOPAULO": {
     img: "https://static.wixstatic.com/media/83bf78_198b745b16bf415f95199610c7301dbd~mv2.png/v1/fill/w_78,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/png-transparent-sao-paulo-f-c-hd-logo-thumbnail.png",
   },
   BOTAFOGO: {
@@ -135,11 +135,20 @@ const jogo10 = {
   time2: "CUIABÁ",
 };
 
+
 const getJogos = async () => {
-  const res = await fetch("http://localhost:3777/rodada/listarJogosRodadaAtual");
+  const res = await fetch(`${urlRender}/rodada/listarJogosRodadaAtual`);
   const data = await res.json();
   console.log(data);
-  return data.jogos;
+  //remover espaços em branco	
+  const times = data.jogos.map((jogo) => {
+    return {
+      ...jogo,
+      time1: jogo.time1.replace(/\s/g, ""),
+      time2: jogo.time2.replace(/\s/g, ""),
+    };
+  });
+  return times;
 }
 // const jogos = [
 //   jogo1,
@@ -160,6 +169,7 @@ const questionModel = document.querySelector(".questionModel");
 const showJogos = async () => {
   const jogos = await getJogos();
   jogos.forEach((jogo, index) => {
+    console.log({jogo, time1: times[jogo.time1], time2: times[jogo.time2]})
     const question = questionModel.cloneNode(true);
     question.querySelector(".dia").innerHTML = jogo.dia;
     if (index > 0) {

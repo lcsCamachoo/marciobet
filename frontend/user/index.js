@@ -102,7 +102,7 @@ const getRespostas = async () => {
 };
 
 const getRodada = async () => {
-  const response = await api.get("/rodada/listarUltima");
+  const response = await api.get("/rodada/buscarAtual");
   return response.data.rodada;
 };
 

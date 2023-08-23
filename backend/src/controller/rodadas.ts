@@ -16,6 +16,9 @@ export const listarJogosRodadaAtual = async (req: Request, res: Response) => {
     const jogos = await prisma.jogos.findMany({
       where: {
         rodadaId: String(rodada?.id),
+      },
+      include: {
+        Rodada: true,
       }
     });
     res.status(200).send({

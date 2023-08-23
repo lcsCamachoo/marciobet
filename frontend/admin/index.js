@@ -16,6 +16,7 @@ let rodadaId = "";
 let respostas = [];
 
 const enviarTimes = async () => {
+  if(!confirm("Tem certeza que deseja enviar os times?")) return
   const forms = document.querySelectorAll(".formAlterarTimes");
   const times = [];
   forms.forEach((form) => {
