@@ -73,3 +73,15 @@ model Respostas {
   Rodada     Rodada?  @relation(fields: [rodadaId], references: [id])
   rodadaId   String?
 }
+
+model FrontPage {
+  id            String   @id @default(uuid())
+  titulo        String
+  videoUrl         String
+  subtitulo     String
+  cronometroTxt String
+  imagens       String[]
+  premioTxt     String
+  criado        DateTime @default(now())
+  atualizado    DateTime @updatedAt
+}
